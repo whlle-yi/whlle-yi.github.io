@@ -7,9 +7,10 @@
   const params = new URLSearchParams(location.search);
   const emails = Array.isArray(c.emails) && c.emails.length ? c.emails : [{ label: 'Email', address: c.email || '' }];
   const experienceData = {[language]: c.experience};
-  c.focus = [...document.querySelectorAll('.terminal-section h3')].map(heading => {
+  const domFocus = [...document.querySelectorAll('.terminal-section h3')].map(heading => {
     const clone = heading.cloneNode(true); clone.querySelectorAll('a').forEach(link => link.remove()); return clone.textContent.trim();
   });
+  if (domFocus.length) c.focus = domFocus;
   const contact = document.querySelector('[data-about-contact]');
   const copy = contact.querySelector('[data-about-email-menu]');
   const menu = contact.querySelector('[data-email-menu]');

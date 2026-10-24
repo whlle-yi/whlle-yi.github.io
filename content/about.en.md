@@ -30,6 +30,11 @@ profile:
   email_label: Copy email address
   copied: Email copied
   copy_failed: Could not copy — select the address below.
+experience:
+  - period: "NOW"
+    title: "Studying & building"
+    detail: "Mathematical modeling, AI agents, and small tools"
+
 ---
 
 ## Hi, I am WHLLE_YI. {#introduction}
@@ -38,4 +43,11 @@ profile:
 
 This site collects my study notes, projects, and technical explorations.
 
-<p><a id="experience" href="{{< relref "/" >}}#experience">Experience</a> · <a id="projects" href="{{< relref "/" >}}#projects">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to Blink</a></p>
+<p><a id="projects" href="{{< relref "/case/" >}}">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to Blink</a></p>
+
+## Interests {#interests}
+
+- Math modeling · AI Agents
+- Automation · Web building
+
+{{< about-experience >}}

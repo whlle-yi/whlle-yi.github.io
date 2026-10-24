@@ -47,19 +47,3 @@ records:
     title: "Hello, World"
     meta: "The first post on this site"
 ---
-
-{{< about-section label="EXPERIENCE" id="experience" >}}
-{{< about-experience >}}
-{{< /about-section >}}
-
-{{< about-section label="INTERESTS" id="interests" >}}
-
-### Math modeling · AI Agents {#interests-a}
-
-### Automation · Web building {#interests-b}
-
-{{< /about-section >}}
-
-{{< about-section label="PROJECTS" id="projects" >}}
-{{< about-projects >}}
-{{< /about-section >}}

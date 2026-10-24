@@ -47,19 +47,3 @@ records:
     title: "你好,世界"
     meta: "本站的第一篇文章"
 ---
-
-{{< about-section label="EXPERIENCE" id="experience" >}}
-{{< about-experience >}}
-{{< /about-section >}}
-
-{{< about-section label="INTERESTS" id="interests" >}}
-
-### 数学建模 · AI Agent {#interests-a}
-
-### 自动化工具 · 网站搭建 {#interests-b}
-
-{{< /about-section >}}
-
-{{< about-section label="PROJECTS" id="projects" >}}
-{{< about-projects >}}
-{{< /about-section >}}

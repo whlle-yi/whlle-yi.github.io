@@ -30,6 +30,11 @@ profile:
   email_label: 复制邮箱地址
   copied: 邮箱已复制
   copy_failed: 复制未成功,可以选中下方邮箱地址。
+experience:
+  - period: "NOW"
+    title: "在校学习 · 做项目"
+    detail: "数学建模、AI Agent 与小工具"
+
 ---
 
 ## 你好,我是 WHLLE_YI。 {#introduction}
@@ -38,4 +43,11 @@ profile:
 
 这个网站记录我的学习笔记、项目实践与技术探索。
 
-<p><a id="experience" href="{{< relref "/" >}}#experience">查看经历</a> · <a id="projects" href="{{< relref "/" >}}#projects">查看项目</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">和 Blink 打个招呼</a></p>
+<p><a id="projects" href="{{< relref "/case/" >}}">查看项目</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">和 Blink 打个招呼</a></p>
+
+## 兴趣方向 {#interests}
+
+- 数学建模 · AI Agent
+- 自动化工具 · 网站搭建
+
+{{< about-experience >}}

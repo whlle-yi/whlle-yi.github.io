@@ -40,7 +40,7 @@
         </div>
         <p class="copy-status" role="status" id="about-copy-status" aria-live="polite" aria-atomic="true"></p>
       </div>
-      <div class="profile-content">{{ .Content }}</div>
+      <div class="profile-content"></div>
       <section class="interactive-shell" aria-labelledby="shell-title" hidden>
         <div class="shell-heading">{{ partial "about/heading.html" (dict "label" "TERMINAL" "id" "shell-title") }}<span class="shell-path" aria-hidden="true">whlle@yi:~</span></div>
         <div class="reply-tools" lang="en"><p class="shell-hint" id="shell-hint">Type help. Tab completes commands.</p><button type="button" id="reply-skip" class="reply-skip" hidden>[skip output]</button></div>

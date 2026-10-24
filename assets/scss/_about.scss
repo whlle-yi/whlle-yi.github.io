@@ -393,3 +393,13 @@
 .email-option:hover, .email-option:focus-visible { background: rgba(155, 27, 46, .1); color: var(--about-accent, var(--accent)); outline: none; }
 .email-provider { color: var(--about-accent, var(--accent)); white-space: nowrap; }
 .email-addr { color: var(--about-muted, var(--code-muted)); overflow-wrap: anywhere; }
+
+/* ---- About page: experience timeline + interests (moved from the homepage) ---- */
+.td-about-page .experience-list { list-style: none; margin: 22px 0 0; padding: 0; }
+.td-about-page .experience-entry { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 6px 20px; padding: 14px 0; border-bottom: 1px dotted var(--about-border, #d8cfc4); align-items: baseline; }
+.td-about-page .experience-entry:last-child { border-bottom: 0; }
+.td-about-page .experience-period { color: var(--about-accent, var(--accent)); font: 12px/1.8 var(--mono, monospace); letter-spacing: .08em; }
+.td-about-page .experience-copy h3 { margin: 0; font: 600 16px/1.6 var(--body-font, inherit); color: inherit; }
+.td-about-page .experience-copy p { margin: 3px 0 0; font-size: 14px; line-height: 1.8; color: var(--about-muted, var(--code-muted, #6b7280)); }
+.td-about-page .experience-award { display: inline-block; margin-left: 10px; color: var(--about-accent, var(--accent)); font: 12px/1.8 var(--mono, monospace); }
+.td-about-page .about-text-panel ul { margin: 10px 0 0; padding-left: 1.2em; }
