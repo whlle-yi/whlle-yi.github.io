@@ -2,36 +2,36 @@ sections: [hero, cards, cta]
 
 hero:
   align: center
-  eyebrow: 开源项目起步模板
+  eyebrow: 个人网站
   title_lines:
-    - words: [{ text: 你的项目， }]
-    - words: [{ text: 清楚讲明白。 }]
-  lead: 一个可以直接修改的项目首页，容纳文档、动态与长篇指南。
+    - words: [{ text: 把做过的事, }]
+    - words: [{ text: 讲清楚。 }]
+  lead: 这里记录我的文章、项目与学习笔记。
   actions:
-    - { label: 阅读文档, url: docs/, icon: fa-solid fa-book, style: primary }
-    - { label: 跟随教程, url: book/, icon: fa-solid fa-arrow-right, style: ghost }
+    - { label: 关于我, url: about/, icon: fa-solid fa-user, style: primary }
+    - { label: 看看项目, url: case/, icon: fa-solid fa-layer-group, style: ghost }
 
 cards:
-  eyebrow: 从清晰结构开始
-  title: 每类内容都有自己的位置
+  eyebrow: 三个入口
+  title: 想看什么,从这里进
   columns: 3
   items:
+    - title: 关于我
+      desc: 一页说清我是谁、会什么、在做什么。
+      icon: fa-solid fa-user
+      url: about/
     - title: 博客
-      desc: 发布文章、设计记录与版本公告。
+      desc: 记录想法、笔记与折腾过程。
       icon: fa-solid fa-pen-nib
       url: blog/
-    - title: 文档
-      desc: 按简介、快速上手、教程与参考组织资料。
-      icon: fa-solid fa-book-open
-      url: docs/
-    - title: 书籍
-      desc: 用连续的阅读体验讲清一套完整工作流。
-      icon: fa-solid fa-graduation-cap
-      url: book/
+    - title: 项目
+      desc: 做过的东西,附源码与说明。
+      icon: fa-solid fa-layer-group
+      url: case/
 
 cta:
-  title: 把这个模板变成你的站点。
-  text: 修改项目名称与网址，替换示例文案，然后发布。
-  label: 开始使用
-  url: docs/get-started/
+  title: 欢迎交流。
+  text: 找到我最好的方式是 GitHub。
+  label: 去 GitHub
+  url: https://github.com/whlle-yi
   style: primary

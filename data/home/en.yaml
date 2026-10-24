@@ -2,36 +2,36 @@ sections: [hero, cards, cta]
 
 hero:
   align: center
-  eyebrow: Open-source project starter
+  eyebrow: Personal site
   title_lines:
-    - words: [{ text: Your project. }]
-    - words: [{ text: Clearly documented. }]
-  lead: A ready-to-edit home for documentation, project updates, and long-form guides.
+    - words: [{ text: What I build, }]
+    - words: [{ text: explained clearly. }]
+  lead: Articles, projects, and notes — written down in one place.
   actions:
-    - { label: Read the docs, url: docs/, icon: fa-solid fa-book, style: primary }
-    - { label: Follow the tutorial, url: book/, icon: fa-solid fa-arrow-right, style: ghost }
+    - { label: About me, url: about/, icon: fa-solid fa-user, style: primary }
+    - { label: Browse projects, url: case/, icon: fa-solid fa-layer-group, style: ghost }
 
 cards:
-  eyebrow: Start with structure
-  title: Everything has a place
+  eyebrow: Three entrances
+  title: Start where you like
   columns: 3
   items:
+    - title: About
+      desc: Who I am, what I can do, and what I am working on.
+      icon: fa-solid fa-user
+      url: about/
     - title: Blog
-      desc: Publish posts, design notes, and release announcements.
+      desc: Ideas, notes, and build logs.
       icon: fa-solid fa-pen-nib
       url: blog/
-    - title: Docs
-      desc: Organize reference material as Introduction, Get Started, Tutorial, and Reference.
-      icon: fa-solid fa-book-open
-      url: docs/
-    - title: Book
-      desc: Teach a complete workflow in a focused, sequential reading experience.
-      icon: fa-solid fa-graduation-cap
-      url: book/
+    - title: Projects
+      desc: Things I have built, with source and write-ups.
+      icon: fa-solid fa-layer-group
+      url: case/
 
 cta:
-  title: Make this starter yours.
-  text: Change the project name and URL, replace the sample copy, and publish.
-  label: Get started
-  url: docs/get-started/
+  title: Say hello.
+  text: The fastest way to reach me is GitHub.
+  label: GitHub
+  url: https://github.com/whlle-yi
   style: primary
