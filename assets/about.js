@@ -103,12 +103,12 @@ function setupConsole(c) {
       case 'help': {
         parent.lang = 'en';
         const list = document.createElement('dl'); list.className = 'shell-help';
-        for (const [name, detail] of [['hello','Say hello to Quack'],['whoami','Profile'],['about','About page'],['experience','Background & awards'],['interests','Interests'],['projects','Projects & notes'],['blog / github','Links'],['contact / email','Contact'],['copy email','Copy email'],['clear','Clear output']]) {
+        for (const [name, detail] of [['hello','Say hello to Blink'],['whoami','Profile'],['about','About page'],['experience','Background & awards'],['interests','Interests'],['projects','Projects & notes'],['blog / github','Links'],['contact / email','Contact'],['copy email','Copy email'],['clear','Clear output']]) {
           text(list, name, 'dt'); text(list, detail, 'dd');
         }
         parent.append(list); break;
       }
-      case 'hello': text(parent, 'Quack >').className = 'shell-speaker'; c.greeting.forEach(line => text(parent, line)); break;
+      case 'hello': text(parent, 'Blink >').className = 'shell-speaker'; c.greeting.forEach(line => text(parent, line)); break;
       case 'about': link(parent, zh ? '关于我' : 'About me', c.urls.about); break;
       case 'whoami': text(parent, 'WHLLE / ' + c.role + ' / Explorer'); text(parent, c.bio); break;
       case 'experience': experienceData[language].forEach(item => text(parent, [item.period,item.title,item.detail,item.award].filter(Boolean).join(' · '))); break;

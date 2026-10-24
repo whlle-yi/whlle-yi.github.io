@@ -10,13 +10,13 @@ profile:
   name: WHLLE_YI
   avatar: images/avatar.jpg
   avatar_alt: WHLLE_YI's avatar
-  robot_section: Quack the duck
-  robot_label: Say hi to Quack
-  robot_hint: Click Quack to quack.
+  robot_section: Blink the cursor cat
+  robot_label: Say hi to Blink
+  robot_hint: Click Blink to meow.
   robot_idle: Here with you, exploring.
-  greetings: # placeholder: what the duck says when clicked
-    - "Quack: Quack! Hi, I am Quack. Welcome to WHLLE_YI's site!"
-    - "Quack: Nice to meet you — go check out the blog and projects."
+  greetings: # placeholder: what the cat says when clicked
+    - "Blink: Meow~ hi, I am Blink. Welcome to WHLLE_YI's site!"
+    - "Blink: Nice to meet you! The cursor on my tail means I code with you."
   stats_label: Site stats
   blog_label: Blog
   projects_label: Projects
@@ -35,4 +35,4 @@ profile:
 
 This site collects my study notes, projects, and technical explorations.
 
-<p><a id="experience" href="{{< relref "/" >}}#experience">Experience</a> · <a id="projects" href="{{< relref "/" >}}#projects">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to Quack</a></p>
+<p><a id="experience" href="{{< relref "/" >}}#experience">Experience</a> · <a id="projects" href="{{< relref "/" >}}#projects">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to Blink</a></p>

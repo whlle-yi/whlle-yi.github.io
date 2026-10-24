@@ -10,13 +10,13 @@ profile:
   name: WHLLE_YI
   avatar: images/avatar.jpg
   avatar_alt: WHLLE_YI 的头像
-  robot_section: Quack 小鸭
-  robot_label: 和 Quack 打个招呼
-  robot_hint: 点击 Quack,嘎一个。
+  robot_section: Blink 光标猫
+  robot_label: 和 Blink 打个招呼
+  robot_hint: 点击 Blink,喵一个。
   robot_idle: 在这里,陪你探索。
-  greetings: # 占位:点击小鸭时它说的话
-    - "Quack:嘎!你好,我是 Quack。欢迎来到 WHLLE_YI 的小站!"
-    - "Quack:很高兴见到你!一起去看看博客和项目吧。"
+  greetings: # 占位:点击小猫时它说的话
+    - "Blink:喵~ 你好,我是 Blink。欢迎来到 WHLLE_YI 的小站!"
+    - "Blink:很高兴见到你!尾巴上的光标,是我陪你写代码的证明。"
   stats_label: 站点内容统计
   blog_label: 博客
   projects_label: 项目
@@ -35,4 +35,4 @@ profile:
 
 这个网站记录我的学习笔记、项目实践与技术探索。
 
-<p><a id="experience" href="{{< relref "/" >}}#experience">查看经历</a> · <a id="projects" href="{{< relref "/" >}}#projects">查看项目</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">和 Quack 打个招呼</a></p>
+<p><a id="experience" href="{{< relref "/" >}}#experience">查看经历</a> · <a id="projects" href="{{< relref "/" >}}#projects">查看项目</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">和 Blink 打个招呼</a></p>
