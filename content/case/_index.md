@@ -1,7 +1,7 @@
 ---
-title: Projects
-linkTitle: Projects
-description: Selected projects — what they do, how they are built, and where the source lives.
+title: 项目
+linkTitle: 项目
+description: 做过的项目——它是什么、我怎么做的、源码在哪里。
 weight: 30
 type: blog
 icon: fa-solid fa-layer-group
@@ -10,10 +10,6 @@ sidebar_root_link_self: true
 blog_index: cards
 blog_index_columns: 3
 footer_style: slim
-menus:
-  main:
-    identifier: projects
-    weight: 30
 cascade:
   type: blog
   reading_time: false
@@ -21,5 +17,4 @@ cascade:
   footer_style: slim
 ---
 
-One page per project: what it is, what I contributed, and a link to the source.
-Each page is a template — fill in the real story behind the code.
+每个项目一页:它是什么、我做了什么、源码在哪。每页都是模板,填上真实的故事即可。

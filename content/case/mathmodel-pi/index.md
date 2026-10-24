@@ -1,27 +1,25 @@
 ---
 title: Mathmodel-PI
 description: >-
-  A desktop workbench for mathematical-modeling contests built on the pi agent
-  framework — modeling, writing, and charting in one place.
+  基于 pi 智能体框架的数学建模竞赛工作台桌面应用——建模、写作、绘图在一个地方完成。
 weight: 10
 date: 2026-10-05
-tags: [desktop, ai-agent, modeling]
+tags: [桌面应用, AI Agent, 数学建模]
 ---
 
-[Mathmodel-PI](https://github.com/whlle-yi/Mathmodel-PI) is a desktop app that
-turns the pi agent framework into a workbench for mathematical-modeling
-contests: problem analysis, model selection, paper writing, and charting in
-one place.
+[Mathmodel-PI](https://github.com/whlle-yi/Mathmodel-PI) 是一个把 pi 智能体框架
+改造成数学建模竞赛工作台的桌面应用:问题分析、模型选择、论文写作、图表绘制,
+在一个界面里完成。
 
-## What it does {#what-it-does}
+## 它做什么 {#what-it-does}
 
 <!-- 占位:3-5 条功能亮点,每条一个动词开头,写清输入和输出。 -->
 
-## How it is built {#how-it-is-built}
+## 怎么做的 {#how-it-is-built}
 
 <!-- 占位:技术栈与关键设计决策,2-3 段。 -->
 
-## Try it {#try-it}
+## 试用 {#try-it}
 
-- Source: [github.com/whlle-yi/Mathmodel-PI](https://github.com/whlle-yi/Mathmodel-PI)
-- Release: _to be added_
+- 源码:[github.com/whlle-yi/Mathmodel-PI](https://github.com/whlle-yi/Mathmodel-PI)
+- 发布版:_待补充_

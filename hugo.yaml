@@ -1,110 +1,136 @@
-# OINK Starter — the only site configuration file.
-# 站点唯一配置文件:站名、地址、语言、UI 与模块都在这里。
+# OINK 个人站配置 — 设计参照 RyanYhy/my-project-docs-vercel
+# 默认语言中文;英文位于 /en/;导航菜单在此统一定义。
 
-title: &siteTitle WHLLE_YI
+title: WHLLE_YI
 baseURL: https://whlle-yi.github.io/
-defaultContentLanguage: en
-disableLanguages: [fr]
-enableGitInfo: true
+defaultContentLanguage: zh
 enableRobotsTXT: true
+enableGitInfo: true
 enableEmoji: true
 timeZone: UTC
 
-languages:
-  en:
-    label: English
-    locale: en-US
-    weight: 1
-    title: *siteTitle
-    params:
-      description: Articles, projects, and notes.
-  zh:
-    label: 简体中文
-    locale: zh-CN
-    weight: 2
-    title: *siteTitle
-    hasCJKLanguage: true
-    params:
-      description: 个人文章、项目与笔记。
-  # Keep French declared so Hugo recognizes .fr.md as a disabled translation.
-  fr:
-    label: Français
-    locale: fr-FR
-    weight: 3
-    title: *siteTitle
-
-# OINK's Markdown components depend on these three Goldmark settings.
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
-    parser:
-      attribute:
-        block: true
-      wrapStandAloneImageWithinParagraph: false
-  highlight:
-    noClasses: false
-
 outputs:
-  home: [HTML, RSS, markdown, LLMS]
+  home: [HTML, markdown, LLMS]
   page: [HTML, markdown]
   section: [HTML, RSS, print, markdown]
 
+markup:
+  tableOfContents:
+    endLevel: 4
+  goldmark:
+    parser:
+      # 块级图片可携带属性行({caption=…})
+      wrapStandAloneImageWithinParagraph: false
+      attribute:
+        block: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [['\[', '\]'], ['$$', '$$']]
+          inline: [['\(', '\)']]
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false # 暗色模式代码高亮需要
+
+languages:
+  zh:
+    label: 简体中文
+    locale: zh-CN
+    weight: 1
+    title: WHLLE_YI
+    hasCJKLanguage: true
+    params:
+      description: 文章、项目与学习笔记
+    menus:
+      main:
+        - identifier: about
+          name: 关于
+          pageRef: /about
+          weight: 10
+          params:
+            icon: fa-solid fa-user
+        - identifier: blog
+          name: 博客
+          pageRef: /blog
+          weight: 20
+          params:
+            icon: fa-solid fa-blog
+        - identifier: projects
+          name: 项目
+          pageRef: /case
+          weight: 30
+          params:
+            icon: fa-solid fa-briefcase
+        - identifier: github
+          name: GitHub
+          url: https://github.com/whlle-yi
+          weight: 90
+          params:
+            icon: fa-brands fa-github
+  en:
+    label: English
+    locale: en-US
+    weight: 2
+    title: WHLLE_YI
+    params:
+      description: Articles, projects, and notes
+    menus:
+      main:
+        - identifier: about
+          name: About
+          pageRef: /about
+          weight: 10
+          params:
+            icon: fa-solid fa-user
+        - identifier: blog
+          name: Blog
+          pageRef: /blog
+          weight: 20
+          params:
+            icon: fa-solid fa-blog
+        - identifier: projects
+          name: Projects
+          pageRef: /case
+          weight: 30
+          params:
+            icon: fa-solid fa-briefcase
+        - identifier: github
+          name: GitHub
+          url: https://github.com/whlle-yi
+          weight: 90
+          params:
+            icon: fa-brands fa-github
+
 params:
-  offline_search: true
+  logo: images/avatar.jpg
   copyright:
     authors: whlle-yi
     from_year: 2026
-  footer_center_info: ''
-  ui:
-    preset: paper
-    preset_menu: [paper, slate, ink, terminal]
-    dark_mode: true
-    section_index: cards
-    blog_index: cards
-    sidebar_menu_foldable: true
-    sidebar_icon_policy: groups
-    backlinks: true
-    # theme_color: '#245f94'
-    # typography: system
-    # image_zoom: true
-    # share: [mastodon, linkedin, email, copy]
-    # feedback:
-    #   enable: true
-    #   reasons: true
-
+  footer_center_info: 'Powered by [Oink](https://oink.pgsty.com)'
   github_repo: https://github.com/whlle-yi/whlle-yi.github.io
   github_branch: main
-
-  # Optional brand assets. The starter already supplies a neutral logo.
-  # logo: icons/logo.svg
-  # wordmark: icons/wordmark.svg
-
-  # Optional Giscus comments. Nothing is loaded until the entire block is set.
-  # comments:
-  #   enable: true
-  #   type: giscus
-  #   giscus:
-  #     repo: OWNER/REPOSITORY
-  #     repoId: R_xxxxxxxxxx
-  #     category: Announcements
-  #     categoryId: DIC_xxxxxxxxxx
-  #     mapping: pathname
-  #     inputPosition: bottom
-  #     theme: auto
-  #     loading: lazy
-
-  # Optional layout choice. Theme defaults remain active while commented.
-  # page_width: wide
-
-# Optional Google Analytics. Production builds only; previews stay untracked.
-# services:
-#   googleAnalytics:
-#     id: G-XXXXXXXXXX
+  offline_search: true
+  offline_search_on_serve: true
+  offline_search_index: summary
+  page_width: normal
+  ui:
+    typography: technical
+    dark_mode: true
+    blog_index_toggle: true
+    section_index: cards
+    blog_index: cards
+    blog_index_columns: 3
+    sidebar_icon_policy: groups
+    sidebar_menu_compact: true
+    sidebar_menu_foldable: true
+    sidebar_expand_levels: 2
+    reading_time: false
 
 module:
   imports:
     - path: github.com/pgsty/oink
   hugoVersion:
     extended: true
-    min: 0.166.0
+    min: 0.160.1

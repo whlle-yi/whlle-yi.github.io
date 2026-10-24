@@ -1,16 +1,16 @@
 ---
-title: Hello, World
+title: 你好,世界
 date: 2026-10-24
-description: The first post on this site — why it exists and what will live here.
-tags: [meta]
+description: 本站的第一篇文章——为什么建站,这里会放什么。
+tags: [随笔]
 ---
 
-This is the first post. Replace it with a real story when there is one.
+这是第一篇文章。有了真正的故事之后,就用它替换掉这篇占位。
 
-## Why this site exists {#why-this-site}
+## 为什么建站 {#why-this-site}
 
 <!-- 占位:一两段说明建站的初衷——写给谁、想记录什么。 -->
 
-## What to expect {#what-to-expect}
+## 接下来会写什么 {#what-to-expect}
 
 <!-- 占位:预告后面会写的主题,方便读者决定是否订阅 RSS。 -->

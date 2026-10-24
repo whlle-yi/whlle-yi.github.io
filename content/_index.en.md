@@ -1,0 +1,62 @@
+---
+title: WHLLE_YI
+description: "What I build, explained clearly: articles, projects, and notes."
+body_class: td-profile-page
+weight: 10
+comments: false
+navbar_autohide: false
+footer_style: slim
+profile:
+  name: "WHLLE_YI"
+  tagline: "Builder"
+  avatar: "images/avatar.jpg"
+  avatar_alt: "WHLLE_YI's avatar"
+  role: "CS student" # placeholder: your one-line identity
+  github: "https://github.com/whlle-yi"
+  github_label: "Visit WHLLE_YI on GitHub"
+  email: "" # placeholder: add a public email if you like
+  email_label: "Copy email address"
+  copied: "Email copied"
+  failed: "Could not copy automatically — select the address below."
+  projects: "Projects"
+  blog: "Blog"
+  about: "About"
+  actions_label: "Page entrances"
+  headline: ["What I build,", "explained clearly."]
+  bio: "Articles, projects, and notes — written down in one place."
+  focus: ["Mathematical modeling & AI agents", "Small automation tools", "Web building"]
+  greeting: ["Hi, I am WW, WHLLE_YI's pixel robot.", "Welcome! Type projects to see the work, or contact to say hello."]
+  pause: "Pause the robot"
+  resume: "Resume the robot"
+  quick_commands: "Quick commands"
+  output_label: "Terminal output"
+  input_label: "Terminal command"
+  completion_label: "Completion"
+experience: # placeholder: your own timeline
+  - period: "NOW"
+    title: "Studying & building"
+    detail: "Mathematical modeling, AI agents, and small tools"
+records:
+  - page: "/case/mathmodel-pi"
+    title: "Mathmodel-PI"
+    meta: "Modeling workbench · desktop app"
+  - page: "/blog/post/hello-world"
+    title: "Hello, World"
+    meta: "The first post on this site"
+---
+
+{{< about-section label="EXPERIENCE" id="experience" >}}
+{{< about-experience >}}
+{{< /about-section >}}
+
+{{< about-section label="INTERESTS" id="interests" >}}
+
+### Math modeling · AI Agents {#interests-a}
+
+### Automation · Web building {#interests-b}
+
+{{< /about-section >}}
+
+{{< about-section label="PROJECTS" id="projects" >}}
+{{< about-projects >}}
+{{< /about-section >}}
