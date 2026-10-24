@@ -1,0 +1,110 @@
+# OINK Starter — the only site configuration file.
+# 站点唯一配置文件:站名、地址、语言、UI 与模块都在这里。
+
+title: &siteTitle WHLLE_YI
+baseURL: https://whlle-yi.github.io/
+defaultContentLanguage: en
+disableLanguages: [fr]
+enableGitInfo: true
+enableRobotsTXT: true
+enableEmoji: true
+timeZone: UTC
+
+languages:
+  en:
+    label: English
+    locale: en-US
+    weight: 1
+    title: *siteTitle
+    params:
+      description: Articles, projects, and notes.
+  zh:
+    label: 简体中文
+    locale: zh-CN
+    weight: 2
+    title: *siteTitle
+    hasCJKLanguage: true
+    params:
+      description: 个人文章、项目与笔记。
+  # Keep French declared so Hugo recognizes .fr.md as a disabled translation.
+  fr:
+    label: Français
+    locale: fr-FR
+    weight: 3
+    title: *siteTitle
+
+# OINK's Markdown components depend on these three Goldmark settings.
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      attribute:
+        block: true
+      wrapStandAloneImageWithinParagraph: false
+  highlight:
+    noClasses: false
+
+outputs:
+  home: [HTML, RSS, markdown, LLMS]
+  page: [HTML, markdown]
+  section: [HTML, RSS, print, markdown]
+
+params:
+  offline_search: true
+  copyright:
+    authors: whlle-yi
+    from_year: 2026
+  footer_center_info: ''
+  ui:
+    preset: paper
+    preset_menu: [paper, slate, ink, terminal]
+    dark_mode: true
+    section_index: cards
+    blog_index: cards
+    sidebar_menu_foldable: true
+    sidebar_icon_policy: groups
+    backlinks: true
+    # theme_color: '#245f94'
+    # typography: system
+    # image_zoom: true
+    # share: [mastodon, linkedin, email, copy]
+    # feedback:
+    #   enable: true
+    #   reasons: true
+
+  github_repo: https://github.com/whlle-yi/whlle-yi.github.io
+  github_branch: main
+
+  # Optional brand assets. The starter already supplies a neutral logo.
+  # logo: icons/logo.svg
+  # wordmark: icons/wordmark.svg
+
+  # Optional Giscus comments. Nothing is loaded until the entire block is set.
+  # comments:
+  #   enable: true
+  #   type: giscus
+  #   giscus:
+  #     repo: OWNER/REPOSITORY
+  #     repoId: R_xxxxxxxxxx
+  #     category: Announcements
+  #     categoryId: DIC_xxxxxxxxxx
+  #     mapping: pathname
+  #     inputPosition: bottom
+  #     theme: auto
+  #     loading: lazy
+
+  # Optional layout choice. Theme defaults remain active while commented.
+  # page_width: wide
+
+# Optional Google Analytics. Production builds only; previews stay untracked.
+# services:
+#   googleAnalytics:
+#     id: G-XXXXXXXXXX
+
+module:
+  imports:
+    - path: github.com/pgsty/oink
+  hugoVersion:
+    extended: true
+    min: 0.166.0
