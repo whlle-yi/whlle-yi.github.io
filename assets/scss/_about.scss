@@ -54,7 +54,7 @@
   .role { font: 20px/1.6 var(--body-font); margin: 0; }
   .explorer { color: var(--code-muted); border-left: 1px solid var(--code-rule); padding-left: 22px; font: 13px/1.6 var(--mono); }
   .shell-portrait { width: 224px; height: 224px; padding: 16px; position: relative; flex: none; }
-  .avatar { display: block; width: 192px; height: 192px; border-radius: 50%; object-fit: cover; transform: rotate(-90deg); }
+  .avatar { display: block; width: 192px; height: 192px; border-radius: 50%; object-fit: cover; }
   .portrait-pixel-ring { position: absolute; width: 100%; height: 100%; inset: 0; color: var(--accent); pointer-events: none; shape-rendering: crispEdges; }
   .headline { color: var(--code-ink); font: 400 clamp(28px, 2.4vw, 36px)/1.5 var(--body-font); letter-spacing: -.025em; margin: 24px 0 14px; padding: 0; border: 0; }
   .headline br { display: none; }
@@ -230,7 +230,6 @@
  80%{transform:translate(1px,-1px)}
  87%{transform:translate(0,0)}
 }
-.shell-portrait img.avatar{transform:rotate(-90deg);transform-origin:50% 50%}
 .ryr-about.bots-static .brand-mascot .hero-frame{display:none}
 .ryr-about.bots-static .brand-mascot .primary-robot{animation:none}
 @media(prefers-reduced-motion:reduce){
@@ -319,7 +318,7 @@
   .about-robot-caption .about-robot-reply { min-height: 3.6em; max-width: 30em; color: var(--about-text); }
   .about-identity { grid-column: 2; grid-row: 1; min-width: 0; }
   .about-portrait { width: 100%; max-width: 360px; aspect-ratio: 1; position: relative; margin: 0 auto; }
-  .about-portrait img { width: 100%; height: 100%; display: block; object-fit: cover; transform: rotate(-90deg); }
+  .about-portrait img { width: 100%; height: 100%; display: block; object-fit: cover; }
   .about-name-row { display: flex; gap: 20px; align-items: baseline; margin-top: 24px; }
   .about-name-row h1 { color: var(--about-text); font: 400 50px/1.15 var(--bs-font-monospace); letter-spacing: -.06em; margin: 0; padding: 0; }
   .about-name-row h1::before { display: none; }
