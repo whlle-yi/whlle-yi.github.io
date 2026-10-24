@@ -10,13 +10,13 @@ profile:
   name: WHLLE_YI
   avatar: images/avatar.jpg
   avatar_alt: WHLLE_YI's avatar
-  robot_section: WW the robot
-  robot_label: Say hi to WW
-  robot_hint: Click WW to say hello.
+  robot_section: Quack the duck
+  robot_label: Say hi to Quack
+  robot_hint: Click Quack to quack.
   robot_idle: Here with you, exploring.
-  greetings: # placeholder: what the robot says when clicked
-    - "WW: Hi, I am WW. Welcome to WHLLE_YI's site!"
-    - "WW: Nice to meet you — go check out the blog and projects."
+  greetings: # placeholder: what the duck says when clicked
+    - "Quack: Quack! Hi, I am Quack. Welcome to WHLLE_YI's site!"
+    - "Quack: Nice to meet you — go check out the blog and projects."
   stats_label: Site stats
   blog_label: Blog
   projects_label: Projects
@@ -35,4 +35,4 @@ profile:
 
 This site collects my study notes, projects, and technical explorations.
 
-<p><a id="experience" href="{{< relref "/" >}}#experience">Experience</a> · <a id="projects" href="{{< relref "/" >}}#projects">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to WW</a></p>
+<p><a id="experience" href="{{< relref "/" >}}#experience">Experience</a> · <a id="projects" href="{{< relref "/" >}}#projects">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to Quack</a></p>
