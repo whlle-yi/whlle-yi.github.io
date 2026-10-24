@@ -14,7 +14,10 @@ profile:
   role: "CS undergraduate"
   github: "https://github.com/whlle-yi"
   github_label: "Visit WHLLE_YI on GitHub"
-  email: "" # placeholder: add a public email if you like
+  emails:
+    - { label: "QQ Mail", address: "3253036748@qq.com" }
+    - { label: "NetEase Mail", address: "15979903749@163.com" }
+    - { label: "Gmail", address: "whlle888888@gmail.com" }
   email_label: "Copy email address"
   copied: "Email copied"
   failed: "Could not copy automatically — select the address below."

@@ -5,23 +5,31 @@
   const c = JSON.parse(document.getElementById('about-data').textContent);
   const language = document.documentElement.lang.startsWith('zh') ? 'zh' : 'en';
   const params = new URLSearchParams(location.search);
-  const email = c.email;
+  const emails = Array.isArray(c.emails) && c.emails.length ? c.emails : [{ label: 'Email', address: c.email || '' }];
   const experienceData = {[language]: c.experience};
   c.focus = [...document.querySelectorAll('.terminal-section h3')].map(heading => {
     const clone = heading.cloneNode(true); clone.querySelectorAll('a').forEach(link => link.remove()); return clone.textContent.trim();
   });
   const contact = document.querySelector('[data-about-contact]');
-  const copy = contact.querySelector('[data-about-email]');
-  const fallback = contact.querySelector('[data-about-email-fallback]');
+  const copy = contact.querySelector('[data-about-email-menu]');
+  const menu = contact.querySelector('[data-email-menu]');
   const status = contact.querySelector('[role="status"]');
-  copy.hidden = false; fallback.hidden = true;
-  let pending = false;
-  copy.addEventListener('click', async () => {
-    if (pending) return; pending = true; status.textContent = '';
-    try { await navigator.clipboard.writeText(email); fallback.hidden = true; status.textContent = c.copied; }
-    catch { fallback.hidden = false; status.textContent = c.failed; }
-    finally { pending = false; }
+  copy.hidden = false;
+  let menuOpen = false;
+  const closeMenu = () => { menuOpen = false; menu.hidden = true; copy.setAttribute('aria-expanded', 'false'); };
+  copy.addEventListener('click', () => {
+    menuOpen = !menuOpen; menu.hidden = !menuOpen; copy.setAttribute('aria-expanded', String(menuOpen));
+    if (menuOpen) status.textContent = '';
   });
+  menu.querySelectorAll('.email-option').forEach(option => {
+    option.addEventListener('click', async () => {
+      status.textContent = '';
+      try { await navigator.clipboard.writeText(option.dataset.emailAddress); status.textContent = `${c.copied} · ${option.dataset.emailLabel}`; }
+      catch { status.textContent = `${c.failed} ${option.dataset.emailAddress}`; }
+      closeMenu();
+    });
+  });
+  document.addEventListener('click', event => { if (menuOpen && !contact.contains(event.target)) closeMenu(); });
   document.querySelector('.interactive-shell').hidden = false;
 function setupConsole(c) {
   const input = document.getElementById('shell-input');
@@ -89,12 +97,15 @@ function setupConsole(c) {
       signal.addEventListener('abort', stop, { once: true });
     });
   }
-  async function copyEmail() {
-    try { await navigator.clipboard.writeText(email); return c.copied; }
-    catch { return c.failed + ' ' + email; }
+  async function copyEmail(index = 0) {
+    const target = emails[index] || emails[0];
+    try { await navigator.clipboard.writeText(target.address); return `${c.copied} · ${target.label}`; }
+    catch { return `${c.failed} ${target.address}`; }
   }
   function contact(parent) {
-    parent.lang = 'en'; text(parent, email); link(parent, 'GitHub / whlle-yi', 'https://github.com/whlle-yi');
+    parent.lang = 'en';
+    emails.forEach(entry => text(parent, `${entry.label}: ${entry.address}`));
+    link(parent, 'GitHub / whlle-yi', 'https://github.com/whlle-yi');
     const button = document.createElement('button'); button.type = 'button'; button.className = 'shell-copy'; button.textContent = 'Copy email';
     button.addEventListener('click', async () => { const result = await copyEmail(); if (parent.isConnected) { text(parent, result); status.textContent = result; } }); parent.append(button);
   }
@@ -110,7 +121,7 @@ function setupConsole(c) {
       }
       case 'hello': text(parent, 'Blink >').className = 'shell-speaker'; c.greeting.forEach(line => text(parent, line)); break;
       case 'about': link(parent, zh ? '关于我' : 'About me', c.urls.about); break;
-      case 'whoami': text(parent, 'WHLLE / ' + c.role + ' / Explorer'); text(parent, c.bio); break;
+      case 'whoami': text(parent, 'WHLLE / ' + c.role + ' / ' + (c.tagline || 'Maker')); text(parent, c.bio); break;
       case 'experience': experienceData[language].forEach(item => text(parent, [item.period,item.title,item.detail,item.award].filter(Boolean).join(' · '))); break;
       case 'interests': c.focus.forEach(item => text(parent, item)); break;
       case 'projects': case 'open notes':

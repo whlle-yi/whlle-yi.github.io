@@ -33,9 +33,11 @@
         </nav>
         <div class="contact-icons">
           <a class="contact-icon" href="{{ $p.github }}" aria-label="{{ $p.github_label }}" title="GitHub">{{ partial "about/asset.html" "github" }}</a>
-          <button class="contact-icon" type="button" data-about-email="{{ $p.email }}" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-copy-status" hidden>{{ partial "about/asset.html" "email" }}</button>
+          <button class="contact-icon" type="button" data-about-email-menu aria-haspopup="true" aria-expanded="false" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-copy-status" hidden>{{ partial "about/asset.html" "email" }}</button>
+          <div class="email-menu" data-email-menu hidden>
+            {{ range $p.emails }}<button type="button" class="email-option" data-email-address="{{ .address }}" data-email-label="{{ .label }}"><span class="email-provider">{{ .label }}</span><span class="email-addr">{{ .address }}</span></button>{{ end }}
+          </div>
         </div>
-        <p class="email-address" data-about-email-fallback>{{ $p.email }}</p>
         <p class="copy-status" role="status" id="about-copy-status" aria-live="polite" aria-atomic="true"></p>
       </div>
       <div class="profile-content">{{ .Content }}</div>

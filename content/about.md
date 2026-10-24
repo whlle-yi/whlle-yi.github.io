@@ -23,7 +23,10 @@ profile:
   tags_label: 标签
   github: https://github.com/whlle-yi
   github_label: 查看 WHLLE_YI 的 GitHub
-  email: ""
+  emails:
+    - { label: "QQ 邮箱", address: "3253036748@qq.com" }
+    - { label: "网易邮箱", address: "15979903749@163.com" }
+    - { label: "Gmail", address: "whlle888888@gmail.com" }
   email_label: 复制邮箱地址
   copied: 邮箱已复制
   copy_failed: 复制未成功,可以选中下方邮箱地址。

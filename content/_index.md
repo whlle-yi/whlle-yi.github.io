@@ -14,7 +14,10 @@ profile:
   role: "计算机专业在校本科生"
   github: "https://github.com/whlle-yi"
   github_label: "访问 WHLLE_YI 的 GitHub 主页"
-  email: "" # 占位:愿意公开邮箱就填在这里
+  emails:
+    - { label: "QQ 邮箱", address: "3253036748@qq.com" }
+    - { label: "网易邮箱", address: "15979903749@163.com" }
+    - { label: "Gmail", address: "whlle888888@gmail.com" }
   email_label: "复制邮箱地址"
   copied: "邮箱已复制"
   failed: "未能自动复制,请选中邮箱手动复制。"

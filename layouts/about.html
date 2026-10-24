@@ -16,8 +16,10 @@
       </nav>
       <div class="about-contacts">
         <a class="about-contact-icon" href="{{ $p.github }}" aria-label="{{ $p.github_label }}" title="GitHub">{{ partial "about/asset.html" "github" }}</a>
-        <button class="about-contact-icon" type="button" data-contact-email="{{ $p.email }}" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-email-status" hidden>{{ partial "about/asset.html" "email" }}</button>
-        <p class="about-email-fallback" data-contact-fallback>{{ $p.email }}</p>
+        <button class="about-contact-icon" type="button" data-contact-email-menu aria-haspopup="true" aria-expanded="false" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-email-status" hidden>{{ partial "about/asset.html" "email" }}</button>
+        <div class="email-menu" data-email-menu hidden>
+          {{ range $p.emails }}<button type="button" class="email-option" data-email-address="{{ .address }}" data-email-label="{{ .label }}"><span class="email-provider">{{ .label }}</span><span class="email-addr">{{ .address }}</span></button>{{ end }}
+        </div>
         <p class="about-email-status" id="about-email-status" role="status" aria-live="polite" aria-atomic="true"></p>
       </div>
       <article class="about-text-panel" aria-labelledby="introduction"><p class="about-eyebrow" lang="en">A NOTE ABOUT ME</p>{{ .Content }}</article>

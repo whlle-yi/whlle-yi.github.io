@@ -375,3 +375,21 @@
   .td-about-page .about-text-panel { border: 2px solid CanvasText; }
   [data-bs-theme='light'] .td-profile-page .ryr-about, [data-bs-theme='light'] .td-profile-page .ryr-about .interactive-shell { --code:Canvas; --code-ink:CanvasText; --code-muted:CanvasText; --code-rule:CanvasText; --accent:LinkText; }
 }
+
+/* ---- Email picker menu: click the envelope, choose a mailbox to copy ---- */
+.contact-icons, .about-contacts { position: relative; }
+.email-menu {
+  position: absolute; top: calc(100% + 10px); left: 0; z-index: 40;
+  display: grid; min-width: 300px; max-width: calc(100vw - 48px); padding: 6px; gap: 2px;
+  background: var(--bs-body-bg, #fffdf8); color: var(--bs-body-color, var(--about-text, inherit));
+  border: 1px solid var(--about-border, #d8cfc4);
+  box-shadow: 6px 6px 0 rgba(155, 27, 46, .12);
+}
+.email-option {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+  width: 100%; padding: 8px 10px; border: 0; background: transparent;
+  font: 13px/1.6 var(--mono, monospace); color: inherit; text-align: left; cursor: pointer;
+}
+.email-option:hover, .email-option:focus-visible { background: rgba(155, 27, 46, .1); color: var(--about-accent, var(--accent)); outline: none; }
+.email-provider { color: var(--about-accent, var(--accent)); white-space: nowrap; }
+.email-addr { color: var(--about-muted, var(--code-muted)); overflow-wrap: anywhere; }

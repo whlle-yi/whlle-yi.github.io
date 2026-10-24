@@ -24,20 +24,32 @@
   reduced.addEventListener('change', stop);
   forced.addEventListener('change', stop);
   document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
-  const email = document.querySelector('[data-contact-email]');
-  const fallback = document.querySelector('[data-contact-fallback]');
+
+  // Email picker: click the envelope to open the mailbox menu, click an option to copy it.
+  const emailBtn = document.querySelector('[data-contact-email-menu]');
+  const menu = document.querySelector('[data-email-menu]');
   const status = document.getElementById('about-email-status');
-  email.hidden = false;
-  fallback.hidden = true;
-  email.addEventListener('click', async () => {
-    status.textContent = '';
-    try {
-      await navigator.clipboard.writeText(email.dataset.contactEmail);
-      fallback.hidden = true;
-      status.textContent = data.copied;
-    } catch {
-      fallback.hidden = false;
-      status.textContent = data.copy_failed;
-    }
+  if (!emailBtn || !menu) return;
+  emailBtn.hidden = false;
+  let menuOpen = false;
+  const closeMenu = () => { menuOpen = false; menu.hidden = true; emailBtn.setAttribute('aria-expanded', 'false'); };
+  emailBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen; menu.hidden = !menuOpen; emailBtn.setAttribute('aria-expanded', String(menuOpen));
+    if (menuOpen) status.textContent = '';
+  });
+  menu.querySelectorAll('.email-option').forEach(option => {
+    option.addEventListener('click', async () => {
+      status.textContent = '';
+      try {
+        await navigator.clipboard.writeText(option.dataset.emailAddress);
+        status.textContent = `${data.copied} · ${option.dataset.emailLabel}`;
+      } catch {
+        status.textContent = `${data.copy_failed} ${option.dataset.emailAddress}`;
+      }
+      closeMenu();
+    });
+  });
+  document.addEventListener('click', event => {
+    if (menuOpen && !event.target.closest('.about-contacts')) closeMenu();
   });
 })();
