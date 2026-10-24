@@ -8,10 +8,10 @@ navbar_autohide: false
 footer_style: slim
 profile:
   name: "WHLLE_YI"
-  tagline: "Builder"
+  tagline: "Maker"
   avatar: "images/avatar.jpg"
   avatar_alt: "WHLLE_YI 的头像"
-  role: "计算机 · 在校学习" # 占位:改成你的一句话身份
+  role: "计算机专业在校本科生"
   github: "https://github.com/whlle-yi"
   github_label: "访问 WHLLE_YI 的 GitHub 主页"
   email: "" # 占位:愿意公开邮箱就填在这里

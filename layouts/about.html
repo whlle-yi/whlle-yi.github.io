@@ -8,7 +8,7 @@
   <div class="about-showcase">
     <section class="about-identity" aria-labelledby="profile-name">
       <div class="about-portrait"><img src="{{ $p.avatar | relURL }}" alt="{{ $p.avatar_alt }}" width="360" height="360" fetchpriority="high" decoding="async"></div>
-      <div class="about-name-row"><h1 id="profile-name">{{ $p.name }}</h1><span lang="en">Explorer</span></div>
+      <div class="about-name-row"><h1 id="profile-name">{{ $p.name }}</h1><span lang="en">Maker</span></div>
       <nav class="about-stats" aria-label="{{ $p.stats_label }}">
         <a href="{{ "blog/" | relLangURL }}"><span class="about-stat-value">{{ $blogCount }}</span><span>{{ $p.blog_label }}</span></a>
         <a href="{{ "case/" | relLangURL }}"><span class="about-stat-value">{{ $projectCount }}</span><span>{{ $p.projects_label }}</span></a>

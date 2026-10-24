@@ -8,10 +8,10 @@ navbar_autohide: false
 footer_style: slim
 profile:
   name: "WHLLE_YI"
-  tagline: "Builder"
+  tagline: "Maker"
   avatar: "images/avatar.jpg"
   avatar_alt: "WHLLE_YI's avatar"
-  role: "CS student" # placeholder: your one-line identity
+  role: "CS undergraduate"
   github: "https://github.com/whlle-yi"
   github_label: "Visit WHLLE_YI on GitHub"
   email: "" # placeholder: add a public email if you like
