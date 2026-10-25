@@ -10,13 +10,13 @@ profile:
   name: WHLLE_YI
   avatar: images/avatar.jpg
   avatar_alt: WHLLE_YI's avatar
-  robot_section: Blink the cursor cat
-  robot_label: Say hi to Blink
-  robot_hint: Click Blink to meow.
+  robot_section: Bit the geometric robot
+  robot_label: Say hi to Bit
+  robot_hint: Click Bit to say hi.
   robot_idle: Here with you, exploring.
-  greetings: # placeholder: what the cat says when clicked
-    - "Blink: Meow~ hi, I am Blink. Welcome to WHLLE_YI's site!"
-    - "Blink: Nice to meet you! The cursor on my tail means I code with you."
+  greetings: # placeholder: what the robot says when clicked
+    - "Bit: Boop! Bit online. Welcome to WHLLE_YI's site!"
+    - "Bit: Nice to meet you! The light on my chest means I code with you."
   stats_label: Site stats
   blog_label: Blog
   projects_label: Projects
@@ -43,7 +43,7 @@ experience:
 
 This site collects my study notes, projects, and technical explorations.
 
-<p><a id="projects" href="{{< relref "/case/" >}}">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to Blink</a></p>
+<p><a id="projects" href="{{< relref "/case/" >}}">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to Bit</a></p>
 
 ## Interests {#interests}
 

@@ -28,7 +28,7 @@ profile:
   headline: ["What I build,", "explained clearly."]
   bio: "Articles, projects, and notes — written down in one place."
   focus: ["Mathematical modeling & AI agents", "Small automation tools", "Web building"]
-  greeting: ["Meow~ I am Blink, a pixel cat with a blinking-cursor tail.", "Welcome! Type projects to see the work, or contact to say hello."]
+  greeting: ["Boop! I am Bit, a robot made of geometry.", "Welcome! Type projects to see the work, or contact to say hello."]
   pause: "Pause the robot"
   resume: "Resume the robot"
   quick_commands: "Quick commands"

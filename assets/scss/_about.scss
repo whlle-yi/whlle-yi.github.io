@@ -403,3 +403,18 @@
 .td-about-page .experience-copy p { margin: 3px 0 0; font-size: 14px; line-height: 1.8; color: var(--about-muted, var(--code-muted, #6b7280)); }
 .td-about-page .experience-award { display: inline-block; margin-left: 10px; color: var(--about-accent, var(--accent)); font: 12px/1.8 var(--mono, monospace); }
 .td-about-page .about-text-panel ul { margin: 10px 0 0; padding-left: 1.2em; }
+
+/* ---- geometric robot mascot (Bit): float / blink / core pulse / arms ---- */
+.td-profile-page .brand-mascot .primary-robot { animation: none !important; }
+.brand-mascot .bot-float, .about-robot .bot-float, .prompt-companion .bot-float { animation: bot-float 2.6s ease-in-out infinite; }
+@keyframes bot-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.bot-eye { animation: bot-blink 3.6s infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes bot-blink { 0%, 90%, 100% { transform: scaleY(1); } 93%, 96% { transform: scaleY(0.12); } }
+.bot-core { animation: bot-core 1.9s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes bot-core { 0%, 100% { opacity: 0.6; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.1); } }
+.bot-arm-l { animation: bot-arm-l 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 8%; }
+@keyframes bot-arm-l { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-7deg); } }
+.bot-arm-r { animation: bot-arm-r 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 8%; }
+@keyframes bot-arm-r { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(7deg); } }
+.bot-shadow { animation: bot-shadow 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes bot-shadow { 0%, 100% { opacity: 0.16; transform: scaleX(1); } 50% { opacity: 0.08; transform: scaleX(0.78); } }
