@@ -83,6 +83,7 @@
     const cx = W / 2 + mx * 46, cy = H / 2 + my * 30;
     const f = Math.min(W, H) * 1.05;
     mx += (tx - mx) * 0.04; my += (ty - my) * 0.04;
+    const cloud = [];
     for (const s of solids) {
       const bobY = Math.sin(now / 4200 + s.bob) * 0.06;
       const cosx = Math.cos(s.rx), sinx = Math.sin(s.rx);
@@ -105,6 +106,20 @@
       ctx.stroke();
       ctx.fillStyle = `rgba(${pal.dot[0]},${pal.dot[1]},${pal.dot[2]},${dotA.toFixed(3)})`;
       for (const [px, py] of pts) ctx.fillRect(px - 1.5, py - 1.5, 3, 3);
+      cloud.push(pts);
+    }
+    // 顶点联动:不同几何体之间距离近的顶点牵线(星座网络)
+    const LINK = 150;
+    for (let a = 0; a < cloud.length; a++) for (let b = a + 1; b < cloud.length; b++) {
+      for (const pa of cloud[a]) for (const pb of cloud[b]) {
+        const dx = pa[0] - pb[0], dy = pa[1] - pb[1];
+        const d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) {
+          const k = 1 - Math.sqrt(d2) / LINK;
+          ctx.strokeStyle = `rgba(${pal.line[0]},${pal.line[1]},${pal.line[2]},${(k * 0.14).toFixed(3)})`;
+          ctx.beginPath(); ctx.moveTo(pa[0], pa[1]); ctx.lineTo(pb[0], pb[1]); ctx.stroke();
+        }
+      }
     }
   }
 

@@ -1013,3 +1013,10 @@ html.has-stark-cursor.is-stark-locked .td-stark-cursor__scale {
 /* ---- Blueprint background: canvas sits above html bg, below content ---- */
 html { background-color: var(--bs-body-bg); }
 body { background-color: transparent !important; }
+
+/* ---- translucent shell: let the blueprint geometry show through ---- */
+.td-profile-page { background: color-mix(in srgb, var(--about-paper) 72%, transparent); }
+.td-profile-page .ryr-about .terminal { background: color-mix(in srgb, var(--code) 76%, transparent); }
+
+/* slightly more solid sticky navbar over the animated background */
+.td-site-header { background: color-mix(in srgb, var(--about-paper) 94%, transparent) !important; }
