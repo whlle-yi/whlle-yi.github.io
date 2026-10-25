@@ -2,45 +2,43 @@
 {{- $records := partial "about/records.html" . -}}
 {{- $data := merge $p (dict "records" $records "experience" .Params.experience "urls" (dict "projects" ("case/" | relLangURL) "blog" ("blog/" | relLangURL) "about" ("about/" | relLangURL))) -}}
 <div class="ryr-about pixel-shell variant-b bots-static" data-about-stage>
-  <section class="composition terminal" data-about-terminal aria-labelledby="profile-name">
+  <div class="hero-stage">
+    <section class="hero-panel hero-identity" aria-labelledby="profile-name">
+      <div class="brand-lockup">
+        <h1 class="wordmark" id="profile-name"><span class="sr-only">{{ $p.name }}</span>{{ partial "about/asset.html" "whlle" }}</h1>
+        <span class="brand-mascot" aria-hidden="true">{{ partial "about/asset.html" "bot" }}</span>
+      </div>
+    </section>
+    <section class="hero-panel hero-role-panel">
+      <div class="identity-role"><p class="role">{{ $p.role }}</p><span class="explorer">{{ $p.tagline }}</span></div>
+    </section>
+    <section class="hero-panel hero-actions" data-about-contact aria-label="{{ $p.actions_label }}">
+      <nav class="page-actions" aria-label="{{ $p.actions_label }}">
+        <a class="primary" href="{{ "case/" | relLangURL }}">{{ $p.projects }} <span aria-hidden="true">↗</span></a>
+        <a class="primary" href="{{ "blog/" | relLangURL }}">{{ $p.blog }} <span aria-hidden="true">↗</span></a>
+        <a class="primary" href="{{ "about/" | relLangURL }}">{{ $p.about }} <span aria-hidden="true">↗</span></a>
+      </nav>
+      <div class="contact-icons">
+        <a class="contact-icon" href="{{ $p.github }}" aria-label="{{ $p.github_label }}" title="GitHub">{{ partial "about/asset.html" "github" }}</a>
+        <button class="contact-icon" type="button" data-about-email-menu aria-haspopup="true" aria-expanded="false" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-copy-status" hidden>{{ partial "about/asset.html" "email" }}</button>
+        <div class="email-menu" data-email-menu hidden>
+          {{ range $p.emails }}<button type="button" class="email-option" data-email-address="{{ .address }}" data-email-label="{{ .label }}"><span class="email-provider">{{ .label }}</span><span class="email-addr">{{ .address }}</span></button>{{ end }}
+        </div>
+      </div>
+      <p class="copy-status" role="status" id="about-copy-status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+    <div class="shell-portrait hero-portrait">
+      <img class="avatar td-about__avatar" src="{{ $p.avatar | relURL }}" alt="{{ $p.avatar_alt }}" width="192" height="192" decoding="async">
+      {{ partial "about/asset.html" "portrait-ring" }}
+    </div>
+  </div>
+  <section class="composition terminal" data-about-terminal aria-labelledby="shell-title">
     <div class="terminal-bar">
       <span class="terminal-dot" aria-hidden="true"></span><span>whlle@explorer: ~</span>
       <button class="stream-control" type="button" id="stream-control" lang="en" hidden>[skip]</button>
       <button class="bot-motion-control" type="button" data-about-motion aria-pressed="false" aria-label="{{ $p.pause }}" data-pause="{{ $p.pause }}" data-resume="{{ $p.resume }}" lang="en" hidden>[pause bot]</button>
     </div>
     <div class="terminal-body">
-      <p class="command identity-command" aria-hidden="true">{{ partial "about/asset.html" "bot-small" }} whoami</p>
-      <div class="identity">
-        <div>
-          <div class="brand-lockup">
-            <h1 class="wordmark" id="profile-name"><span class="sr-only">{{ $p.name }}</span>{{ partial "about/asset.html" "whlle" }}</h1>
-            <span class="brand-mascot" aria-hidden="true">{{ partial "about/asset.html" "bot" }}</span>
-          </div>
-          <div class="identity-role"><p class="role">{{ $p.role }}</p><span class="explorer">{{ $p.tagline }}</span></div>
-        </div>
-        <div class="shell-portrait">
-          <img class="avatar td-about__avatar" src="{{ $p.avatar | relURL }}" alt="{{ $p.avatar_alt }}" width="192" height="192" decoding="async">
-          {{ partial "about/asset.html" "portrait-ring" }}
-        </div>
-      </div>
-      <h2 class="headline" id="introduction">{{ range $i, $line := $p.headline }}{{ if $i }}<br>{{ end }}{{ $line }}{{ end }}</h2>
-      <p class="bio">{{ $p.bio }}</p>
-      <div class="actions" data-about-contact>
-        <nav class="page-actions" aria-label="{{ $p.actions_label }}">
-          <a class="primary" href="{{ "case/" | relLangURL }}">{{ $p.projects }} <span aria-hidden="true">↗</span></a>
-          <a class="primary" href="{{ "blog/" | relLangURL }}">{{ $p.blog }} <span aria-hidden="true">↗</span></a>
-          <a class="primary" href="{{ "about/" | relLangURL }}">{{ $p.about }} <span aria-hidden="true">↗</span></a>
-        </nav>
-        <div class="contact-icons">
-          <a class="contact-icon" href="{{ $p.github }}" aria-label="{{ $p.github_label }}" title="GitHub">{{ partial "about/asset.html" "github" }}</a>
-          <button class="contact-icon" type="button" data-about-email-menu aria-haspopup="true" aria-expanded="false" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-copy-status" hidden>{{ partial "about/asset.html" "email" }}</button>
-          <div class="email-menu" data-email-menu hidden>
-            {{ range $p.emails }}<button type="button" class="email-option" data-email-address="{{ .address }}" data-email-label="{{ .label }}"><span class="email-provider">{{ .label }}</span><span class="email-addr">{{ .address }}</span></button>{{ end }}
-          </div>
-        </div>
-        <p class="copy-status" role="status" id="about-copy-status" aria-live="polite" aria-atomic="true"></p>
-      </div>
-      <div class="profile-content"></div>
       <section class="interactive-shell" aria-labelledby="shell-title" hidden>
         <div class="shell-heading">{{ partial "about/heading.html" (dict "label" "TERMINAL" "id" "shell-title") }}<span class="shell-path" aria-hidden="true">whlle@yi:~</span></div>
         <div class="reply-tools" lang="en"><p class="shell-hint" id="shell-hint">Type help. Tab completes commands.</p><button type="button" id="reply-skip" class="reply-skip" hidden>[skip output]</button></div>

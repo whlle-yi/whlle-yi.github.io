@@ -1040,3 +1040,17 @@ html[data-bs-theme='dark'] { background: #0b0c0f; }
 .td-profile-page .ryr-about .terminal { background: rgba(255, 255, 255, 0.14) !important; }
 [data-bs-theme='dark'] .td-profile-page .ryr-about .terminal { background: rgba(16, 16, 18, 0.35) !important; }
 .td-profile-page .ryr-about .interactive-shell { background: color-mix(in srgb, var(--code) 30%, transparent) !important; }
+
+/* ---- hero: floating centered panels + corner portrait (user mockup) ---- */
+.td-profile-page .ryr-about .hero-stage { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; max-width: 1080px; margin: 30px auto 10px; }
+.td-profile-page .ryr-about .hero-panel { background: color-mix(in srgb, var(--code) 58%, transparent); border: 1px solid var(--code-rule); }
+.td-profile-page .ryr-about .hero-identity { padding: 20px 44px 18px; }
+.td-profile-page .ryr-about .hero-identity .brand-lockup { gap: 26px; }
+.td-profile-page .ryr-about .hero-role-panel { padding: 9px 30px; }
+.td-profile-page .ryr-about .hero-role-panel .identity-role { gap: 14px 20px; }
+.td-profile-page .ryr-about .hero-actions { padding: 12px 26px 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.td-profile-page .ryr-about .hero-actions .page-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 0; }
+.td-profile-page .ryr-about .hero-actions .contact-icons { display: flex; gap: 14px; justify-content: center; }
+.td-profile-page .ryr-about .hero-portrait { position: absolute; top: -34px; right: -170px; }
+.td-profile-page .ryr-about .composition.terminal { margin-top: 26px; }
+@media (max-width: 1360px) { .td-profile-page .ryr-about .hero-portrait { position: static; margin: 2px auto 0; } }
