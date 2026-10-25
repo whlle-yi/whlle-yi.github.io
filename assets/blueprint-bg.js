@@ -1,7 +1,7 @@
-// Blueprint background: pale-blue wireframe polyhedra drifting in 3D,
-// rendered on a fixed full-viewport canvas behind the content.
-// Pure Canvas 2D, no dependencies; respects prefers-reduced-motion,
-// pauses when the tab is hidden, and follows light/dark theme.
+// Blueprint background: colorful wireframe polyhedra drifting in 3D,
+// mouse movement tilts them so different faces come into view.
+// Pure Canvas 2D; respects prefers-reduced-motion, pauses when hidden,
+// follows light/dark theme.
 (() => {
   'use strict';
   const canvas = document.getElementById('bp-bg');
@@ -9,7 +9,7 @@
   const ctx = canvas.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 
-  // ---- polyhedra: {v: [[x,y,z]...], e: [[a,b]...]} ----
+  // ---- polyhedra ----
   const cube = (() => {
     const v = [], e = [];
     for (let i = 0; i < 8; i++) v.push([(i & 1) ? 1 : -1, (i & 2) ? 1 : -1, (i & 4) ? 1 : -1]);
@@ -34,31 +34,45 @@
       if (Math.abs(d2(v[a], v[b]) - min) < 1e-6) e.push([a, b]);
     return { v, e };
   })();
+  const SHAPES = [icosa, cube, octa, tetra, icosa, cube, octa];
 
-  const SHAPES = [cube, tetra, octa, icosa];
-  const solids = [];
-  let seed = 7;
+  // ---- palette: 每只一种颜色,蓝系家族、深浅有别;亮/暗各配一档 ----
+  const COLORS = [
+    { light: [40, 100, 152],  dark: [112, 176, 224] },  // 钢蓝
+    { light: [30, 126, 126],  dark: [92, 202, 198] },   // 青
+    { light: [70, 86, 164],   dark: [142, 156, 232] },  // 靛
+    { light: [22, 84, 134],   dark: [98, 168, 218] },   // 深海蓝
+    { light: [88, 64, 148],   dark: [172, 150, 232] },  // 紫
+    { light: [16, 110, 108],  dark: [80, 196, 190] },   // 深青
+    { light: [56, 78, 140],   dark: [128, 150, 226] },  // 蓝紫
+  ];
+
+  // ---- scene ----
+  let seed = 11;
   const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  for (let i = 0; i < 14; i++) {
+  const solids = [];
+  for (let i = 0; i < 7; i++) {
     solids.push({
       shape: SHAPES[i % SHAPES.length],
-      x: -2.7 + rand() * 5.4, y: -1.25 + rand() * 2.5, z: 1.7 + rand() * 2.6,
+      ci: i % COLORS.length,
+      x: -2.2 + rand() * 4.4, y: -1.1 + rand() * 2.2, z: 1.6 + rand() * 2.4,
       rx: rand() * Math.PI, ry: rand() * Math.PI,
-      wx: (rand() - 0.5) * 0.22, wy: (rand() - 0.5) * 0.28,
-      bob: rand() * Math.PI * 2, size: 0.09 + rand() * 0.08,
+      wx: (rand() - 0.5) * 0.18, wy: (rand() - 0.5) * 0.22,
+      bob: rand() * Math.PI * 2, size: 0.15 + rand() * 0.13,
+      sens: 0.6 + rand() * 0.8,             // 鼠标倾斜灵敏度,各自不同
+      flip: rand() > 0.5 ? 1 : -1,
     });
   }
 
-  // ---- palette follows light/dark ----
+  // ---- theme ----
   const dark = () =>
     document.documentElement.getAttribute('data-bs-theme') === 'dark' ||
     (!document.documentElement.hasAttribute('data-bs-theme') &&
       matchMedia('(prefers-color-scheme: dark)').matches);
-  const palette = () => dark()
-    ? { line: [126, 184, 226], dot: [160, 210, 245], glow: 'rgba(126, 184, 226, 0.05)' }
-    : { line: [74, 138, 186], dot: [96, 158, 205], glow: 'rgba(74, 138, 186, 0.04)' };
+  const rgb = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+  const linkColor = () => dark() ? [120, 160, 210] : [70, 104, 150];
 
-  // ---- canvas sizing ----
+  // ---- canvas ----
   let W = 0, H = 0;
   function resize() {
     const dpr = Math.min(devicePixelRatio || 1, 1.5);
@@ -69,54 +83,58 @@
   addEventListener('resize', () => { resize(); if (reduce.matches) draw(performance.now()); });
   resize();
 
-  // ---- gentle mouse parallax ----
+  // ---- mouse: 视差 + 倾斜转动 ----
   let mx = 0, my = 0, tx = 0, ty = 0;
   addEventListener('pointermove', event => {
     tx = (event.clientX / innerWidth - 0.5) * 2;
     ty = (event.clientY / innerHeight - 0.5) * 2;
   }, { passive: true });
 
-  // ---- projection ----
   function draw(now) {
-    const pal = palette();
     ctx.clearRect(0, 0, W, H);
-    const cx = W / 2 + mx * 46, cy = H / 2 + my * 30;
+    mx += (tx - mx) * 0.045; my += (ty - my) * 0.045;
+    const cx = W / 2 + mx * 40, cy = H / 2 + my * 26;
     const f = Math.min(W, H) * 1.05;
-    mx += (tx - mx) * 0.04; my += (ty - my) * 0.04;
+    const dk = dark();
     const cloud = [];
+
     for (const s of solids) {
       const bobY = Math.sin(now / 4200 + s.bob) * 0.06;
-      const cosx = Math.cos(s.rx), sinx = Math.sin(s.rx);
-      const cosy = Math.cos(s.ry), siny = Math.sin(s.ry);
+      const rx = s.rx + my * 0.85 * s.sens;              // 鼠标上下 → 翻转
+      const ry = s.ry + mx * 0.95 * s.sens * s.flip;     // 鼠标左右 → 翻转
+      const cosx = Math.cos(rx), sinx = Math.sin(rx);
+      const cosy = Math.cos(ry), siny = Math.sin(ry);
       const pts = s.shape.v.map(([vx, vy, vz]) => {
-        let y = vy * cosx - vz * sinx, z = vy * sinx + vz * cosx;   // rotate X
-        let x = vx * cosy + z * siny; z = -vx * siny + z * cosy;    // rotate Y
-        x *= s.size; y *= s.size; z = z * s.size + s.z;
-        const k = f / z;
-        return [cx + (s.x + x) * k, cy + (s.y + y + bobY) * k, z];
+        let py = vy * cosx - vz * sinx, pz = vy * sinx + vz * cosx;
+        let px = vx * cosy + pz * siny; pz = -vx * siny + pz * cosy;
+        px *= s.size; py *= s.size; pz = pz * s.size + s.z;
+        const k = f / pz;
+        return [cx + (s.x + px) * k, cy + (s.y + py + bobY) * k, pz];
       });
-      const depth = Math.max(0, Math.min(1, 1 - (s.z - 1.7) / 2.6)); // 近实远虚
-      const lineA = 0.17 + depth * 0.24, dotA = 0.2 + depth * 0.3;
+      const depth = Math.max(0, Math.min(1, 1 - (s.z - 1.6) / 2.4));
+      const base = dk ? COLORS[s.ci].dark : COLORS[s.ci].light;
+      const lineA = 0.24 + depth * 0.3, dotA = 0.3 + depth * 0.34;
       ctx.lineWidth = 1;
-      ctx.strokeStyle = `rgba(${pal.line[0]},${pal.line[1]},${pal.line[2]},${lineA.toFixed(3)})`;
+      ctx.strokeStyle = rgb(base, lineA);
       ctx.beginPath();
       for (const [a, b] of s.shape.e) {
         ctx.moveTo(pts[a][0], pts[a][1]); ctx.lineTo(pts[b][0], pts[b][1]);
       }
       ctx.stroke();
-      ctx.fillStyle = `rgba(${pal.dot[0]},${pal.dot[1]},${pal.dot[2]},${dotA.toFixed(3)})`;
+      ctx.fillStyle = rgb(base, dotA);
       for (const [px, py] of pts) ctx.fillRect(px - 1.5, py - 1.5, 3, 3);
       cloud.push(pts);
     }
+
     // 顶点联动:不同几何体之间距离近的顶点牵线(星座网络)
-    const LINK = 150;
+    const LINK = 170, lc = linkColor();
     for (let a = 0; a < cloud.length; a++) for (let b = a + 1; b < cloud.length; b++) {
       for (const pa of cloud[a]) for (const pb of cloud[b]) {
         const dx = pa[0] - pb[0], dy = pa[1] - pb[1];
         const d2 = dx * dx + dy * dy;
         if (d2 < LINK * LINK) {
           const k = 1 - Math.sqrt(d2) / LINK;
-          ctx.strokeStyle = `rgba(${pal.line[0]},${pal.line[1]},${pal.line[2]},${(k * 0.2).toFixed(3)})`;
+          ctx.strokeStyle = rgb(lc, k * 0.2);
           ctx.beginPath(); ctx.moveTo(pa[0], pa[1]); ctx.lineTo(pb[0], pb[1]); ctx.stroke();
         }
       }
@@ -127,7 +145,7 @@
   let raf = 0, last = 0;
   function tick(now) {
     raf = requestAnimationFrame(tick);
-    if (now - last < 33) return;            // ~30fps 足够
+    if (now - last < 33) return;
     last = now;
     for (const s of solids) { s.rx += s.wx / 30; s.ry += s.wy / 30; }
     draw(now);
