@@ -1029,3 +1029,14 @@ html[data-bs-theme='dark'] { background: #0b0c0f; }
 .td-profile-page .ryr-about .terminal { background: color-mix(in srgb, var(--code) 42%, transparent); }
 .td-profile-page .ryr-about .interactive-shell { background: color-mix(in srgb, var(--code) 45%, transparent); }
 .td-site-header { background: color-mix(in srgb, var(--bs-body-bg) 86%, transparent) !important; }
+
+/* ---- full transparency pass: no cream veil at all ---- */
+.td-profile-page, .td-about-page { background: transparent !important; }
+.td-profile-page .ryr-about .terminal { background: rgba(255, 255, 255, 0.14); }
+[data-bs-theme='dark'] .td-profile-page .ryr-about .terminal { background: rgba(16, 16, 18, 0.35); }
+.td-profile-page .ryr-about .interactive-shell { background: color-mix(in srgb, var(--code) 25%, transparent); }
+
+/* terminal + shell translucency: win over theme-scoped rules */
+.td-profile-page .ryr-about .terminal { background: rgba(255, 255, 255, 0.14) !important; }
+[data-bs-theme='dark'] .td-profile-page .ryr-about .terminal { background: rgba(16, 16, 18, 0.35) !important; }
+.td-profile-page .ryr-about .interactive-shell { background: color-mix(in srgb, var(--code) 30%, transparent) !important; }
