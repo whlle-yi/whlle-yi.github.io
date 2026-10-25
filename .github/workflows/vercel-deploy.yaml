@@ -1,0 +1,68 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vercel-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GO_VERSION: stable
+  HUGO_VERSION: "0.166.0"
+  GOWORK: off
+
+jobs:
+  deploy:
+    name: Build and deploy
+    if: github.event_name == 'workflow_dispatch' || vars.VERCEL_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          check-latest: true
+          cache-dependency-path: go.sum
+
+      - name: Install Hugo Extended
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Resolve deployment settings
+        env:
+          CONFIGURED_SITE_URL: ${{ vars.VERCEL_SITE_URL }}
+        run: |
+          VERCEL_SITE_URL="${CONFIGURED_SITE_URL:-https://whlle-yi.vercel.app/}"
+          echo "VERCEL_SITE_URL=${VERCEL_SITE_URL}" >> "${GITHUB_ENV}"
+
+      - name: Build
+        run: |
+          hugo --cleanDestinationDir --gc --minify --environment production \
+            --printPathWarnings --panicOnWarning \
+            --baseURL "${VERCEL_SITE_URL}"
+
+      - name: Link Vercel project
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          mkdir -p .vercel
+          printf '{"orgId":"%s","projectId":"%s"}' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx --yes vercel@latest deploy public --prod --yes --token="$VERCEL_TOKEN"
