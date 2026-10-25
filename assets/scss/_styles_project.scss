@@ -1020,3 +1020,12 @@ body { background-color: transparent !important; }
 
 /* slightly more solid sticky navbar over the animated background */
 .td-site-header { background: color-mix(in srgb, var(--about-paper) 94%, transparent) !important; }
+
+/* ---- "inkless" base: text floats over the blueprint, paper tint nearly gone ---- */
+html { background: #f7f9fc; }
+html[data-bs-theme='dark'] { background: #0b0c0f; }
+@media (prefers-color-scheme: dark) { html:not([data-bs-theme='light']) { background: #0b0c0f; } }
+.td-profile-page, .td-about-page { background: color-mix(in srgb, var(--about-paper) 26%, transparent) !important; }
+.td-profile-page .ryr-about .terminal { background: color-mix(in srgb, var(--code) 42%, transparent); }
+.td-profile-page .ryr-about .interactive-shell { background: color-mix(in srgb, var(--code) 45%, transparent); }
+.td-site-header { background: color-mix(in srgb, var(--bs-body-bg) 86%, transparent) !important; }

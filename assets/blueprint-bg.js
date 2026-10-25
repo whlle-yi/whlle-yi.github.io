@@ -96,7 +96,7 @@
         return [cx + (s.x + x) * k, cy + (s.y + y + bobY) * k, z];
       });
       const depth = Math.max(0, Math.min(1, 1 - (s.z - 1.7) / 2.6)); // 近实远虚
-      const lineA = 0.09 + depth * 0.18, dotA = 0.14 + depth * 0.24;
+      const lineA = 0.12 + depth * 0.2, dotA = 0.16 + depth * 0.26;
       ctx.lineWidth = 1;
       ctx.strokeStyle = `rgba(${pal.line[0]},${pal.line[1]},${pal.line[2]},${lineA.toFixed(3)})`;
       ctx.beginPath();
@@ -116,7 +116,7 @@
         const d2 = dx * dx + dy * dy;
         if (d2 < LINK * LINK) {
           const k = 1 - Math.sqrt(d2) / LINK;
-          ctx.strokeStyle = `rgba(${pal.line[0]},${pal.line[1]},${pal.line[2]},${(k * 0.14).toFixed(3)})`;
+          ctx.strokeStyle = `rgba(${pal.line[0]},${pal.line[1]},${pal.line[2]},${(k * 0.17).toFixed(3)})`;
           ctx.beginPath(); ctx.moveTo(pa[0], pa[1]); ctx.lineTo(pb[0], pb[1]); ctx.stroke();
         }
       }
