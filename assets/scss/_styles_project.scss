@@ -1093,3 +1093,9 @@ html[data-bs-theme='dark'] { background: #0b0c0f; }
 .td-site-header button.td-nav-util[aria-label]::after { content: attr(aria-label); font-size: 14px; margin-inline-start: 7px; }
 .td-site-header :lang(zh-CN) .td-language-selector__trigger::after { content: "EN"; font-size: 14px; margin-inline-start: 6px; }
 .td-site-header :lang(en) .td-language-selector__trigger::after { content: "中"; font-size: 14px; margin-inline-start: 6px; }
+
+/* navbar right cluster: breathing room */
+.td-site-header .td-nav-search-box { margin-inline: 10px; }
+.td-site-header .td-language-selector__trigger { margin-inline: 8px; }
+.td-site-header button.td-nav-util[aria-label] { margin-inline-start: 12px; }
+.td-site-header .td-nav-github { margin-inline-start: 12px; }
