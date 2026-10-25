@@ -1077,3 +1077,19 @@ html[data-bs-theme='dark'] { background: #0b0c0f; }
 .bots-paused .site-pet, .bots-paused .site-pet * { animation-play-state: paused !important; }
 .bots-static .site-pet, .bots-static .site-pet * { animation: none !important; }
 .td-profile-page .shell-output .shell-reply { white-space: pre-line; }
+
+/* terminal is now the only child in the window - tighten its top gap */
+.td-profile-page .ryr-about .interactive-shell { margin-top: 0; padding-top: 18px; border-top: 0; }
+
+/* ---- navbar: bigger & clearer ---- */
+.td-site-header .td-nav-brand { font-size: 19px; }
+.td-site-header .nav-link { font-size: 17px; }
+.td-site-header .nav-link i, .td-site-header .nav-link svg { font-size: 17px; }
+.td-site-header .td-nav-search-box { font-size: 15px; }
+.td-site-header .td-nav-util button, .td-site-header .td-nav-util a { font-size: 15px; }
+.td-site-header .td-nav-util button i, .td-site-header .td-nav-util button svg { font-size: 18px; }
+.td-site-header .td-nav-hover-menu__option { font-size: 14px; }
+/* 给纯图标控件补文字:配色按钮显示自己的名称,语言按钮显示目标语言 */
+.td-site-header button.td-nav-util[aria-label]::after { content: attr(aria-label); font-size: 14px; margin-inline-start: 7px; }
+.td-site-header :lang(zh-CN) .td-language-selector__trigger::after { content: "EN"; font-size: 14px; margin-inline-start: 6px; }
+.td-site-header :lang(en) .td-language-selector__trigger::after { content: "中"; font-size: 14px; margin-inline-start: 6px; }
