@@ -4,6 +4,8 @@ description: "超星学习通自动化工具。"
 weight: 50
 date: 2026-10-04
 tags: [自动化, Python]
+group: 工具与自动化
+github: https://github.com/whlle-yi/chaoxing-auto
 ---
 
 [chaoxing-auto](https://github.com/whlle-yi/chaoxing-auto) — 超星学习通自动化工具。

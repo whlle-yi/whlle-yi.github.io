@@ -4,6 +4,8 @@ description: "A chart-craft skill library for AI agents — one unified visual s
 weight: 20
 date: 2026-09-26
 tags: [visualization, ai-agent, skills]
+group: AI Agent Skills
+github: https://github.com/whlle-yi/pretty-charts-skills
 ---
 
 [pretty-charts-skills](https://github.com/whlle-yi/pretty-charts-skills) — A chart-craft skill library for AI agents — one unified visual style system across Matplotlib, ECharts, TikZ, and Mermaid.

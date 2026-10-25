@@ -4,6 +4,8 @@ description: "The software-engineering course capstone: one product delivered th
 weight: 70
 date: 2026-10-20
 tags: [software-engineering, coursework]
+group: Coursework
+github: https://github.com/whlle-yi/software-engineering-practice
 ---
 
 [software-engineering-practice](https://github.com/whlle-yi/software-engineering-practice) — The software-engineering course capstone: one product delivered through five iterative stages.

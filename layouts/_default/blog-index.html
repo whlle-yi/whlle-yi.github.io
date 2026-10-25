@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{ $pages := .RegularPagesRecursive.ByDate.Reverse }}
+{{ $tagOrder := slice }}
+{{ range $pages }}{{ range .Params.tags }}
+  {{ if not (in $tagOrder .) }}{{ $tagOrder = $tagOrder | append . }}{{ end }}
+{{ end }}{{ end }}
+<article class="blog-index">
+  <header class="bi-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="bi-intro">{{ . }}</div>{{ end }}
+  </header>
+
+  {{ with $tagOrder }}
+  <nav class="bi-tags" aria-label="{{ if eq $.Lang "zh" }}标签{{ else }}Tags{{ end }}">
+    {{ range . }}<a class="bi-chip" href="{{ "tags/" | relLangURL }}{{ . | urlize }}/"># {{ . }}</a>{{ end }}
+  </nav>
+  {{ end }}
+
+  <ol class="bi-timeline">
+    {{ range $pages }}
+    <li class="bi-item">
+      <span class="bi-node" aria-hidden="true"></span>
+      <div class="bi-body">
+        <a class="bi-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ with .Summary | plainify | truncate 160 }}<p class="bi-excerpt">{{ . }}</p>{{ end }}
+        <p class="bi-meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+          <span class="bi-sep">·</span>
+          <span>{{ .ReadingTime }} {{ if eq $.Lang "zh" }}分钟{{ else }}min{{ end }}</span>
+          {{ range .Params.tags }}<a class="bi-tag" href="{{ "tags/" | relLangURL }}{{ . | urlize }}/"># {{ . }}</a>{{ end }}
+        </p>
+      </div>
+    </li>
+    {{ end }}
+  </ol>
+
+  {{ if not $pages }}
+  <p class="bi-empty">{{ if eq .Lang "zh" }}第一篇文章正在路上。{{ else }}The first post is on its way.{{ end }}</p>
+  {{ end }}
+</article>
+{{ end }}

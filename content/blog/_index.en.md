@@ -2,6 +2,7 @@
 title: Blog
 description: Articles, notes, and write-ups of things I build.
 type: blog
+layout: blog-index
 icon: fa-solid fa-blog
 sidebar_root_for: self
 sidebar_root_link_self: true

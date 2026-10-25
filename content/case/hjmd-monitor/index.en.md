@@ -4,6 +4,8 @@ description: "A lightweight monitoring tool."
 weight: 40
 date: 2026-10-11
 tags: [monitoring, python]
+group: Tools & Automation
+github: https://github.com/whlle-yi/hjmd-monitor
 ---
 
 [hjmd-monitor](https://github.com/whlle-yi/hjmd-monitor) — A lightweight monitoring tool.

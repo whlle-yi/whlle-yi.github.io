@@ -4,38 +4,73 @@
 {{ $blogCount := len (where $source.RegularPages "Section" "blog") }}
 {{ $projectCount := 0 }}
 {{ with $source.GetPage "/case" }}{{ $projectCount = len .Pages }}{{ end }}
-<div class="about-notes">
-  <div class="about-showcase">
-    <section class="about-identity" aria-labelledby="profile-name">
-      <div class="about-portrait"><img src="{{ $p.avatar | relURL }}" alt="{{ $p.avatar_alt }}" width="360" height="360" fetchpriority="high" decoding="async"></div>
-      <div class="about-name-row"><h1 id="profile-name">{{ $p.name }}</h1><span lang="en">Maker</span></div>
-      <nav class="about-stats" aria-label="{{ $p.stats_label }}">
-        <a href="{{ "blog/" | relLangURL }}"><span class="about-stat-value">{{ $blogCount }}</span><span>{{ $p.blog_label }}</span></a>
-        <a href="{{ "case/" | relLangURL }}"><span class="about-stat-value">{{ $projectCount }}</span><span>{{ $p.projects_label }}</span></a>
-        <a href="{{ "tags/" | relLangURL }}"><span class="about-stat-value">{{ len $source.Taxonomies.tags }}</span><span>{{ $p.tags_label }}</span></a>
+<div class="about-innei">
+  <header class="ai-head">
+    <div class="ai-portrait"><img src="{{ $p.avatar | relURL }}" alt="{{ $p.avatar_alt }}" width="360" height="360" fetchpriority="high" decoding="async"></div>
+    <div class="ai-id">
+      <h1 id="profile-name">{{ $p.name }}<span class="ai-role" lang="en">Maker</span></h1>
+      <nav class="ai-stats" aria-label="{{ $p.stats_label }}">
+        <a href="{{ "blog/" | relLangURL }}"><strong>{{ $blogCount }}</strong> {{ $p.blog_label }}</a>
+        <a href="{{ "case/" | relLangURL }}"><strong>{{ $projectCount }}</strong> {{ $p.projects_label }}</a>
+        <a href="{{ "tags/" | relLangURL }}"><strong>{{ len $source.Taxonomies.tags }}</strong> {{ $p.tags_label }}</a>
       </nav>
-      <div class="about-contacts">
-        <a class="about-contact-icon" href="{{ $p.github }}" aria-label="{{ $p.github_label }}" title="GitHub">{{ partial "about/asset.html" "github" }}</a>
-        <button class="about-contact-icon" type="button" data-contact-email-menu aria-haspopup="true" aria-expanded="false" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-email-status" hidden>{{ partial "about/asset.html" "email" }}</button>
+      <div class="ai-socials about-contacts">
+        <a class="ai-social" href="{{ $p.github }}" target="_blank" rel="noopener" aria-label="{{ $p.github_label }}" title="GitHub">{{ partial "about/asset.html" "github" }}</a>
+        <button class="ai-social" type="button" data-contact-email-menu aria-haspopup="true" aria-expanded="false" aria-label="{{ $p.email_label }}" title="{{ $p.email_label }}" aria-describedby="about-email-status" hidden>{{ partial "about/asset.html" "email" }}</button>
         <div class="email-menu" data-email-menu hidden>
           {{ range $p.emails }}<button type="button" class="email-option" data-email-address="{{ .address }}" data-email-label="{{ .label }}"><span class="email-provider">{{ .label }}</span><span class="email-addr">{{ .address }}</span></button>{{ end }}
         </div>
+        <span class="ai-bot-wrap">
+          <button class="about-robot ai-bot" type="button" data-ryr-button aria-label="{{ $p.robot_label }}" title="{{ $p.robot_hint }}" disabled>{{ partial "about/asset.html" "bot" }}</button>
+        </span>
         <p class="about-email-status" id="about-email-status" role="status" aria-live="polite" aria-atomic="true"></p>
       </div>
-      <article class="about-text-panel" aria-labelledby="introduction"><p class="about-eyebrow" lang="en">A NOTE ABOUT ME</p>{{ .Content }}</article>
-    </section>
-    <section class="about-robot-stage" aria-label="{{ $p.robot_section }}">
-      <p class="about-eyebrow" lang="en">T4 / GEOMETRIC PHAGE</p>
-      <div class="about-robot-space">
-        <span class="about-orbit" aria-hidden="true"></span>
-        <button class="about-robot" type="button" data-ryr-button aria-label="{{ $p.robot_label }}" aria-describedby="ryr-hint" disabled>{{ partial "about/asset.html" "bot" }}</button>
-      </div>
-      <div class="about-robot-caption">
-        <p id="ryr-hint">{{ $p.robot_hint }}</p>
-        <p class="about-robot-reply" role="status" aria-live="polite" aria-atomic="true" data-ryr-status>{{ $p.robot_idle }}</p>
-      </div>
-    </section>
-  </div>
+      <p class="ai-bot-reply" role="status" aria-live="polite" aria-atomic="true" data-ryr-status></p>
+    </div>
+  </header>
+
+  <div class="ai-prose">{{ .Content }}</div>
+
+  {{ with $p.tags }}
+  <section class="ai-section" aria-label="{{ $p.labels_title }}">
+    <h2>{{ $p.labels_title }}</h2>
+    <details class="ai-labels">
+      <summary>{{ $p.labels_summary }}</summary>
+      <ul class="ai-tag-list">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+    </details>
+  </section>
+  {{ end }}
+
+  <section class="ai-section" aria-label="{{ $p.timeline_title }}">
+    <h2>{{ $p.timeline_title }}</h2>
+    <ol class="ai-timeline">
+      {{ range .Params.experience }}
+      <li>
+        <span class="ai-tl-period" lang="en">{{ .period }}</span>
+        <div class="ai-tl-body">
+          <h3>{{ .title }}</h3>
+          {{ with .detail }}<p>{{ . }}</p>{{ end }}
+        </div>
+      </li>
+      {{ end }}
+    </ol>
+  </section>
+
+  {{ with $p.skills }}
+  <section class="ai-section" aria-label="{{ $p.skills_title }}">
+    <h2>{{ $p.skills_title }}</h2>
+    <ul class="ai-skills">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+  </section>
+  {{ end }}
+
+  <section class="ai-section" aria-label="{{ $p.findme_title }}">
+    <h2>{{ $p.findme_title }}</h2>
+    {{ with $p.findme_note }}<p class="ai-findme-note">{{ . }}</p>{{ end }}
+    <ul class="ai-links">
+      <li><a href="{{ $p.github }}" target="_blank" rel="noopener">GitHub</a></li>
+      {{ range $p.emails }}<li><a href="mailto:{{ .address }}">{{ .label }} · <span lang="en">{{ .address }}</span></a></li>{{ end }}
+    </ul>
+  </section>
 </div>
 <script type="application/json" id="about-page-data">{{ dict "greetings" $p.greetings "copied" $p.copied "copy_failed" $p.copy_failed | jsonify | safeJS }}</script>
 {{ $script := resources.Get "about-page.js" | minify | fingerprint }}

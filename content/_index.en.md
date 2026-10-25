@@ -28,7 +28,7 @@ profile:
   headline: ["What I build,", "explained clearly."]
   bio: "Articles, projects, and notes — written down in one place."
   focus: ["Mathematical modeling & AI agents", "Small automation tools", "Web building"]
-  greeting: ["Boop! I am T4, a bacteriophage-shaped bot — my head is an icosahedron, same family as the shapes behind you.", "Welcome! Type projects to see the work, or contact to say hello."]
+  greeting: ["Boop! I am Ico, a little robot with an icosahedron head — same family as the shapes behind you.", "Welcome! Type projects to see the work, or contact to say hello."]
   pause: "Pause the robot"
   resume: "Resume the robot"
   quick_commands: "Quick commands"
@@ -45,7 +45,7 @@ qa:
   - keys: ["major", "school", "student"]
     answer: "CS undergraduate, studying and building projects."
   - keys: ["this site", "website"]
-    answer: "My personal site: Hugo + OINK theme, with T4 the phage mascot and a geometric starfield background."
+    answer: "My personal site: Hugo + OINK theme, with Ico the geometric robot as mascot and a geometric starfield background."
   - keys: ["hello", "hi", "hey"]
     answer: "Hello! Type help to see what I know, or just ask me anything."
 experience: # placeholder: your own timeline

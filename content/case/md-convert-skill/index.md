@@ -4,6 +4,8 @@ description: "Markdown 文档转换技能:一键产出排版规范的 Word / PDF
 weight: 60
 date: 2026-09-30
 tags: [文档, Pandoc, 技能库]
+group: AI Agent 技能库
+github: https://github.com/whlle-yi/md-convert-skill
 ---
 
 [md-convert-skill](https://github.com/whlle-yi/md-convert-skill) — Markdown 文档转换技能:一键产出排版规范的 Word / PDF / HTML。

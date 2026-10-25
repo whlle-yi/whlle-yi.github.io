@@ -10,17 +10,35 @@ profile:
   name: WHLLE_YI
   avatar: images/avatar.jpg
   avatar_alt: WHLLE_YI's avatar
-  robot_section: T4 the geometric phage
-  robot_label: Say hi to T4
-  robot_hint: Click T4 to say hi.
-  robot_idle: Here with you, exploring.
-  greetings: # placeholder: what the phage says when clicked
-    - "T4: Boop! T4 online. Welcome to WHLLE_YI's site!"
-    - "T4: Nice to meet you! My icosahedral head is kin to the shapes in the background."
   stats_label: Site stats
-  blog_label: Blog
-  projects_label: Projects
-  tags_label: Tags
+  blog_label: "posts"
+  projects_label: "projects"
+  tags_label: "tags"
+  labels_title: Labels
+  labels_summary: Life is about sticking labels on yourself — maybe we don't need that many, so I folded mine away.
+  tags:
+    - CS undergraduate
+    - Maker
+    - Math modeling
+    - AI Agent tinkerer
+    - Automation tools
+    - Hugo sites
+  timeline_title: Timeline
+  skills_title: Skills & directions
+  skills: # placeholder: entries are editable, format "name · what for"
+    - Python · math modeling & scripting
+    - AI Agents · prompt writing & orchestration
+    - C/C++ · coursework & practice
+    - Hugo · static sites (this site)
+    - Git · version control
+  findme_title: Find me
+  findme_note: Any mailbox works — I read them all.
+  robot_section: Ico the geometric robot
+  robot_label: Say hi to Ico
+  robot_hint: Click Ico to say hi.
+  greetings: # placeholder: what the robot says when clicked
+    - "Ico: Boop! Ico online. Welcome to WHLLE_YI's site!"
+    - "Ico: Nice to meet you! I am a floating icosahedron, kin to the shapes in the background."
   github: https://github.com/whlle-yi
   github_label: WHLLE_YI on GitHub
   emails:
@@ -34,20 +52,19 @@ experience:
   - period: "NOW"
     title: "Studying & building"
     detail: "Mathematical modeling, AI agents, and small tools"
-
+  - period: "EDU"
+    title: "CS undergraduate"
+    detail: "Building the fundamentals, shipping small things"
 ---
 
 ## Hi, I am WHLLE_YI. {#introduction}
 
-<!-- placeholder: two or three sentences about who you are and what you work on. -->
+<!-- placeholder: feel free to polish; 2–3 short paragraphs recommended. -->
 
-This site collects my study notes, projects, and technical explorations.
+Hello there. I'm a **CS undergraduate** who likes turning ideas into things that run — this site is one of them: built with Hugo, themed by hand, deployed on GitHub Pages.
 
-<p><a id="projects" href="{{< relref "/case/" >}}">Projects</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">Say hi to T4</a></p>
+I spend most of my time on **mathematical modeling** and **AI agents**, plus small automation tools. This is where I keep my notes, projects, and explorations.
 
-## Interests {#interests}
-
-- Math modeling · AI Agents
-- Automation · Web building
-
-{{< about-experience >}}
+- Code → [Projects]( {{< relref "/case/" >}} ) · [GitHub](https://github.com/whlle-yi)
+- Writing → [Blog]( {{< relref "/blog/" >}} )
+- Or go [home]( {{< relref "/" >}} ) and chat with Ico.

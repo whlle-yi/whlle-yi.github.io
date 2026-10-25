@@ -1052,8 +1052,12 @@ html[data-bs-theme='dark'] { background: #0b0c0f; }
 .td-profile-page .ryr-about .hero-actions .page-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 0; }
 .td-profile-page .ryr-about .hero-actions .contact-icons { display: flex; gap: 14px; justify-content: center; }
 .td-profile-page .ryr-about .hero-portrait { position: absolute; top: -34px; right: -170px; }
+.td-profile-page .ryr-about .hero-mascot { position: absolute; top: -63px; left: clamp(-210px, calc((1080px - 100vw) / 2 + 20px), -170px); width: 250px; pointer-events: none; will-change: transform; transform-origin: 50% 46%; }
+.td-profile-page .ryr-about .hero-mascot svg { width: 100%; height: auto; display: block; }
+.td-profile-page .ryr-about .hero-mascot .bot-shadow { display: none; } /* flying: no ground shadow (also keeps the rotated bbox inside the layout box) */
 .td-profile-page .ryr-about .composition.terminal { margin-top: 26px; }
 @media (max-width: 1360px) { .td-profile-page .ryr-about .hero-portrait { position: static; margin: 2px auto 0; } }
+@media (max-width: 1360px) { .td-profile-page .ryr-about .hero-mascot { display: none; } }
 
 /* ---- hero typography: larger ---- */
 .td-profile-page .ryr-about .role { font-size: 26px; }
@@ -1091,3 +1095,69 @@ html[data-bs-theme='dark'] { background: #0b0c0f; }
 .td-site-header button.td-nav-util[aria-label] { margin-inline-start: 12px; }
 .td-site-header .td-nav-github { margin-inline-start: 12px; }
 
+
+/* ---- /case list: antfu-style grouped minimal rows ---- */
+.case-list { --case-accent: #9b1b2e; max-width: 1080px; margin: 0 auto; padding: clamp(2rem, 5vw, 3.2rem) 1.25rem 4rem; }
+[data-bs-theme='dark'] .case-list { --case-accent: #ed7283; }
+.case-head h1 { margin: 0 0 .5rem; font-size: 2.4rem; }
+.case-intro { margin: 0 0 1.2rem; color: var(--bs-secondary-color); font-size: 1.15rem; }
+.case-intro p { margin: 0; }
+.case-group { margin-top: 2.3rem; }
+.case-group h2 { display: flex; align-items: center; gap: .55rem; margin: 0 0 1rem; font-size: 1.7rem; }
+.case-group h2::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--case-accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--case-accent) 16%, transparent); }
+.case-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+.case-item { display: flex; align-items: center; gap: 1rem; padding: .65rem .95rem; border-radius: 12px; transition: background-color .15s ease; }
+.case-item:hover { background: color-mix(in srgb, var(--case-accent) 7%, transparent); }
+.case-link { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .12rem; text-decoration: none; color: inherit; }
+.case-name { font-weight: 600; font-size: 1.35rem; color: var(--bs-body-color); transition: color .15s ease; }
+.case-link:hover .case-name, .case-link:focus-visible .case-name { color: var(--case-accent); }
+.case-desc { color: var(--bs-secondary-color); font-size: 1.15rem; line-height: 1.65; overflow-wrap: anywhere; }
+.case-github { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 11px; color: var(--bs-secondary-color); transition: color .15s ease, background-color .15s ease; }
+.case-github:hover, .case-github:focus-visible { color: var(--case-accent); background: color-mix(in srgb, var(--case-accent) 9%, transparent); }
+.case-github svg { width: 19px; height: 19px; }
+@media(prefers-reduced-motion: reduce) { .case-item, .case-name, .case-github { transition: none; } }
+@media(max-width: 580px) { .case-item { padding: .55rem; } .case-name { font-size: 1.2rem; } .case-desc { font-size: 1.02rem; } }
+
+/* ---- vertical scroll rail: constellation path on the right edge ----
+   The zigzag line draws itself with reading progress (stroke-dashoffset);
+   diamond stars at the vertices light up as the line passes them. */
+.scroll-rail { position: fixed; right: 9px; top: 50%; translate: 0 -50%; pointer-events: none; z-index: 60; transition: opacity .3s ease; }
+.scroll-rail.is-idle { opacity: 0; }
+.scroll-rail svg { display: block; height: 430px; max-height: 58vh; width: auto; overflow: visible; }
+.scroll-rail .rail-track { fill: none; stroke: color-mix(in srgb, var(--bs-secondary-color) 26%, transparent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.scroll-rail .rail-draw { fill: none; stroke: #e0475c; stroke-width: 4.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(224, 71, 92, .6)); }
+.scroll-rail .rail-head { fill: #ff8fa0; filter: drop-shadow(0 0 6px rgba(224, 71, 92, .85)); transform-box: fill-box; transform-origin: center; animation: rail-pulse 1.5s ease-in-out infinite; }
+@keyframes rail-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.6); opacity: .55; } }
+.scroll-rail .rail-star { fill: transparent; stroke: color-mix(in srgb, var(--bs-secondary-color) 45%, transparent); stroke-width: 2; transform-box: fill-box; transform-origin: center; transition: fill .2s ease, stroke .2s ease; }
+.scroll-rail .rail-star.lit { fill: #e0475c; stroke: #e0475c; filter: drop-shadow(0 0 5px rgba(224, 71, 92, .8)); }
+@media(max-width: 767px) { .scroll-rail { display: none; } }
+@media(prefers-reduced-motion: reduce) { .scroll-rail .rail-star { transition: none; } .scroll-rail .rail-head { animation: none; } }
+
+/* ---- hide the native root scrollbar: the scroll rail replaces it ----
+   (inner scrollers like .shell-output keep their own bars) */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+/* ---- /blog index: timeline + excerpt list (Innei-style) ---- */
+.blog-index { --bi-accent: #9b1b2e; max-width: 1080px; margin: 0 auto; padding: clamp(2rem, 5vw, 3.2rem) 1.25rem 4rem; }
+[data-bs-theme='dark'] .blog-index { --bi-accent: #ed7283; }
+.bi-head h1 { margin: 0 0 .5rem; font-size: 2.4rem; }
+.bi-intro { color: var(--bs-secondary-color); font-size: 1.15rem; }
+.bi-intro p { margin: 0; }
+.bi-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0 0; }
+.bi-chip { padding: .28rem .85rem; border-radius: 999px; font-size: .98rem; color: var(--bs-body-color); text-decoration: none; border: 1px solid color-mix(in srgb, var(--bi-accent) 38%, transparent); background: color-mix(in srgb, var(--bi-accent) 7%, transparent); transition: color .15s ease, border-color .15s ease; }
+.bi-chip:hover, .bi-chip:focus-visible { color: var(--bi-accent); border-color: var(--bi-accent); outline: none; }
+.bi-timeline { list-style: none; margin: 2.2rem 0 0; padding: .2rem 0 0 1.4rem; border-left: 2px solid color-mix(in srgb, var(--bi-accent) 30%, transparent); display: grid; gap: 1.9rem; }
+.bi-item { position: relative; }
+.bi-node { position: absolute; left: calc(-1.4rem - 7px); top: .5em; width: 12px; height: 12px; border-radius: 50%; background: var(--bi-accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--bi-accent) 16%, transparent); }
+.bi-title { font-size: 1.5rem; font-weight: 650; color: var(--bs-body-color); text-decoration: none; line-height: 1.4; transition: color .15s ease; }
+.bi-title:hover, .bi-title:focus-visible { color: var(--bi-accent); outline: none; }
+.bi-excerpt { margin: .35rem 0 0; font-size: 1.1rem; line-height: 1.8; color: var(--bs-secondary-color); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.bi-meta { margin: .5rem 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .55rem; font: .92rem/1.6 var(--bs-font-monospace, monospace); color: var(--bs-secondary-color); }
+.bi-meta time { color: var(--bi-accent); }
+.bi-sep { opacity: .6; }
+.bi-tag { color: var(--bs-secondary-color); text-decoration: none; border-bottom: 1px dashed color-mix(in srgb, var(--bs-secondary-color) 50%, transparent); }
+.bi-tag:hover, .bi-tag:focus-visible { color: var(--bi-accent); border-bottom-color: var(--bi-accent); outline: none; }
+.bi-empty { margin-top: 2rem; color: var(--bs-secondary-color); font-size: 1.1rem; }
+@media(prefers-reduced-motion: reduce) { .bi-chip, .bi-title, .bi-tag { transition: none; } }
+@media(max-width: 580px) { .bi-title { font-size: 1.3rem; } .bi-excerpt { font-size: 1.02rem; } }

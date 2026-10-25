@@ -4,6 +4,8 @@ description: "一套轻量的监控小工具。"
 weight: 40
 date: 2026-10-11
 tags: [监控, Python]
+group: 工具与自动化
+github: https://github.com/whlle-yi/hjmd-monitor
 ---
 
 [hjmd-monitor](https://github.com/whlle-yi/hjmd-monitor) — 一套轻量的监控小工具。

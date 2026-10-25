@@ -2,6 +2,7 @@
 title: 博客
 description: 文章、笔记,以及做东西过程中的记录。
 type: blog
+layout: blog-index
 icon: fa-solid fa-blog
 sidebar_root_for: self
 sidebar_root_link_self: true

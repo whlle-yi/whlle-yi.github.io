@@ -36,9 +36,9 @@
   a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; border: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .terminal { background: var(--code); border: 1px solid var(--code-rule); }
-  .terminal-bar { display: flex; align-items: center; gap: 11px; min-height: 46px; padding: 8px clamp(22px, 3vw, 48px); border-bottom: 1px solid var(--code-rule); color: var(--code-muted); font: 12px/1.6 var(--mono); }
+  .terminal-bar { display: flex; align-items: center; gap: 11px; min-height: 30px; padding: 3px clamp(22px, 3vw, 48px); border-bottom: 1px solid var(--code-rule); color: var(--code-muted); font: 12px/1.6 var(--mono); }
   .terminal-dot { width: 6px; height: 6px; flex: none; background: var(--accent); }
-  .terminal-body { padding: clamp(26px, 3vw, 48px); }
+  .terminal-body { padding: clamp(14px, 1.4vw, 20px) clamp(26px, 3vw, 48px) clamp(26px, 3vw, 48px); }
   .command { color: #f08c9a; font: 14px/1.7 var(--mono); margin: 0 0 16px; }
   .identity-command { display: flex; align-items: center; gap: 10px; }
   .identity-command .pixel-robot { width: 20px; height: 20px; }
@@ -132,7 +132,9 @@
   .typing-companion[data-state='typing'] .bot-run-b { animation: orb-step-b 540ms steps(1, end) infinite; }
   .typing-companion[data-state='typing'] .bot-run-c { animation: orb-step-c 540ms steps(1, end) infinite; }
   .brand-mascot .bot-idle { display: none; }
-  .stream-control { margin-left: auto; min-height: 44px; background: transparent; border: 0; padding: 4px 0 4px 12px; color: var(--code-muted); font: 12px/1.6 var(--mono); cursor: pointer; }
+  .stream-control { margin-left: auto; min-height: 22px; background: transparent; border: 0; padding: 2px 0 2px 12px; color: var(--code-muted); font: 12px/1.6 var(--mono); cursor: pointer; }
+  /* keep [pause bot] right-aligned even while [skip]/[replay] is hidden */
+  .terminal-bar:has(> .stream-control[hidden]) .bot-motion-control { margin-left: auto; }
   .stream-stage { transition: opacity 90ms linear; }
   .stream-pending { visibility: hidden; opacity: 0; }
   &.bots-paused .brand-mascot *, &.bots-paused .typing-companion * { animation-play-state: paused !important; }
@@ -142,9 +144,8 @@
   @media(max-width:1050px) { .identity { gap: 25px; } .brand-lockup { gap: 20px; } .brand-mascot { width: 80px; height: 80px; } }
   @media(max-width:600px) {
     width: calc(100% - 40px); padding-block: 30px 36px;
-    .terminal-body { padding: 25px 21px; }
+    .terminal-body { padding: 14px 21px 25px; }
     .terminal-bar { padding-inline: 21px; flex-wrap: wrap; gap: 8px; font-size: 11px; }
-    .terminal-bar > span:nth-child(2) { flex: 1 1 100px; min-width: 0; overflow-wrap: anywhere; }
     .terminal-bar .stream-control { flex: none; }
     .bot-motion-control { margin-left: auto; }
     .identity { gap: 14px; }
@@ -406,7 +407,7 @@
 
 /* ---- geometric robot mascot (Bit): float / blink / core pulse / arms ---- */
 .td-profile-page .brand-mascot .primary-robot { animation: none !important; }
-.brand-mascot .bot-float, .about-robot .bot-float, .prompt-companion .bot-float { animation: bot-float 2.6s ease-in-out infinite; }
+.brand-mascot .bot-float, .about-robot .bot-float, .prompt-companion .bot-float, .hero-mascot .bot-float { animation: bot-float 2.6s ease-in-out infinite; }
 @keyframes bot-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 .bot-eye { animation: bot-blink 3.6s infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes bot-blink { 0%, 90%, 100% { transform: scaleY(1); } 93%, 96% { transform: scaleY(0.12); } }
@@ -423,3 +424,139 @@
 .bot-fiber { animation: bot-fiber 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 0%; }
 .bot-fiber-b { animation-delay: -1.4s; }
 @keyframes bot-fiber { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-6deg); } }
+
+/* ---- Ico the icosahedron robot: antenna, arms, blinking eyes ----
+   Idle animations are unconditional by design: the mascot always moves,
+   regardless of bots-static/bots-paused or prefers-reduced-motion. */
+.bot-antenna { animation: bot-fiber 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.bot-arm-l { animation: bot-arm-l 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 10%; }
+.bot-arm-r { animation: bot-arm-r 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 10%; }
+.bot-blink { animation: bot-blink 4.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
+/* ==================================================================
+   About page, Innei-style layout (排版参考 innei.in/about):
+   narrow prose column, avatar+name header, folded labels, timeline,
+   skills, contacts. Visual identity (blueprint bg, crimson) unchanged.
+   ================================================================== */
+.td-about-page {
+  .about-innei { max-width: 1080px; margin: 0 auto; padding: clamp(2rem, 5vw, 3.5rem) 1.5rem 4.5rem; }
+  .about-innei *, .about-innei *::before, .about-innei *::after { box-sizing: border-box; }
+
+  .ai-head { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; margin-bottom: 2.25rem; }
+  .ai-portrait img {
+    width: 118px; height: 118px; display: block; border-radius: 26%;
+    border: 1px solid var(--about-border);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+  }
+  .ai-id h1 { margin: 0; font-size: 2.4rem; line-height: 1.25; display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+  .ai-role { font-size: 1.3rem; font-weight: 400; color: var(--about-muted); }
+  .ai-stats { display: flex; flex-wrap: wrap; gap: 1.1rem; font-size: 1.2rem; }
+  .ai-stats a { color: var(--about-muted); text-decoration: none; border-bottom: 1px dashed var(--about-border); padding-bottom: 1px; }
+  .ai-stats a:hover, .ai-stats a:focus-visible { color: var(--about-text); border-bottom-color: var(--about-accent); }
+  .ai-stats strong { color: var(--about-accent); font-weight: 700; margin-right: .15rem; }
+
+  .ai-socials { display: flex; align-items: center; flex-wrap: wrap; gap: .7rem; margin-top: .35rem; }
+  .ai-social {
+    width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
+    padding: 0; border-radius: 13px; cursor: pointer; text-decoration: none;
+    color: var(--about-text); background: color-mix(in srgb, var(--about-panel) 72%, transparent);
+    border: 1px solid var(--about-border);
+    transition: transform .18s ease, border-color .18s ease, color .18s ease;
+  }
+  .ai-social:hover, .ai-social:focus-visible { transform: translateY(-2px); border-color: var(--about-accent); color: var(--about-accent); outline: none; }
+  .ai-social svg { width: 20px; height: 20px; display: block; }
+
+  .ai-bot-wrap { display: inline-flex; }
+  .about-robot.ai-bot {
+    width: 46px; height: 46px; max-width: none; aspect-ratio: 1; padding: 0;
+    background: transparent; border: 0; cursor: pointer;
+  }
+  .about-robot.ai-bot svg { filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .18)); }
+  .ai-bot-reply { margin: .55rem 0 0; min-height: 0; font-size: 1rem; color: var(--about-muted); }
+  .ai-bot-reply:empty { display: none; }
+
+  .ai-prose { font-size: 1.5rem; line-height: 2; color: var(--about-text); }
+  .ai-prose h2 { font-size: 2.2rem; margin: 2.25rem 0 1rem; }
+  .ai-prose ul { padding-left: 1.25rem; }
+  .ai-prose a { color: var(--about-accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--about-accent) 45%, transparent); }
+  .ai-prose a:hover, .ai-prose a:focus-visible { border-bottom-color: var(--about-accent); }
+  .ai-prose p:last-child { margin-bottom: 0; }
+
+  .ai-section { margin-top: 2.75rem; }
+  .ai-section h2 {
+    display: flex; align-items: center; gap: .55rem;
+    margin: 0 0 1.2rem; font-size: 2.2rem;
+  }
+  .ai-section h2::before {
+    content: ""; width: .5rem; height: .5rem; border-radius: 50%;
+    background: var(--about-accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--about-accent) 18%, transparent);
+  }
+
+  .ai-labels summary {
+    cursor: pointer; list-style: none; user-select: none;
+    font-size: 1.35rem; color: var(--about-muted);
+  }
+  .ai-labels summary::-webkit-details-marker { display: none; }
+  .ai-labels summary::before {
+    content: "▸"; display: inline-block; margin-right: .45rem;
+    color: var(--about-accent); transition: transform .2s ease;
+  }
+  .ai-labels[open] summary::before { transform: rotate(90deg); }
+  .ai-labels summary:hover, .ai-labels summary:focus-visible { color: var(--about-text); outline: none; }
+  .ai-tag-list { display: flex; flex-wrap: wrap; gap: .55rem; list-style: none; margin: 1rem 0 0; padding: 0; }
+  .ai-tag-list li {
+    padding: .38rem 1rem; border-radius: 999px; font-size: 1.2rem;
+    color: var(--about-text);
+    border: 1px solid color-mix(in srgb, var(--about-accent) 38%, var(--about-border));
+    background: color-mix(in srgb, var(--about-accent) 7%, transparent);
+  }
+
+  .ai-timeline { list-style: none; margin: 0; padding: .1rem 0 0 1.5rem; border-left: 2px solid color-mix(in srgb, var(--about-accent) 30%, var(--about-border)); }
+  .ai-timeline li { position: relative; padding: 0 0 1.5rem .65rem; }
+  .ai-timeline li:last-child { padding-bottom: .1rem; }
+  .ai-timeline li::before {
+    content: ""; position: absolute; left: calc(-1.5rem - 7px); top: .38em;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--about-accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--about-accent) 16%, transparent);
+  }
+  .ai-tl-period {
+    display: inline-block; margin-bottom: .2rem;
+    font-family: var(--td-font-family-monospace, monospace); font-size: 1rem;
+    letter-spacing: .08em; color: var(--about-accent);
+  }
+  .ai-tl-body h3 { margin: 0; font-size: 1.5rem; }
+  .ai-tl-body p { margin: .3rem 0 0; font-size: 1.35rem; color: var(--about-muted); }
+
+  .ai-skills { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+  .ai-skills li { position: relative; padding-left: 1.3rem; font-size: 1.45rem; }
+  .ai-skills li::before {
+    content: ""; position: absolute; left: 0; top: .68em;
+    width: .45rem; height: .45rem; transform: rotate(45deg);
+    background: var(--about-accent);
+  }
+
+  .ai-findme-note { margin: -.35rem 0 1rem; font-size: 1.3rem; color: var(--about-muted); }
+  .ai-links { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; font-size: 1.45rem; }
+  .ai-links a {
+    color: var(--about-text); text-decoration: none;
+    border-bottom: 1px dashed var(--about-border); padding-bottom: 1px;
+  }
+  .ai-links a:hover, .ai-links a:focus-visible { color: var(--about-accent); border-bottom-color: var(--about-accent); outline: none; }
+
+  @media(prefers-reduced-motion: reduce) {
+    .ai-social { transition: none; }
+  }
+  @media(forced-colors: active) {
+    .ai-portrait img { border: 2px solid CanvasText; }
+    .ai-social, .ai-tag-list li { border: 1px solid CanvasText; }
+    .ai-timeline { border-left-color: CanvasText; }
+  }
+  @media(max-width: 580px) {
+    .ai-head { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .ai-id h1, .ai-socials { justify-content: center; }
+    .ai-portrait img { width: 96px; height: 96px; }
+  }
+}
+

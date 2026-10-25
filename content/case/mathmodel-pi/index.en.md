@@ -6,6 +6,8 @@ description: >-
 weight: 10
 date: 2026-10-05
 tags: [desktop, ai-agent, modeling]
+group: Math Modeling
+github: https://github.com/whlle-yi/Mathmodel-PI
 ---
 
 [Mathmodel-PI](https://github.com/whlle-yi/Mathmodel-PI) is a desktop app that

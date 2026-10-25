@@ -3,12 +3,10 @@ title: 项目
 linkTitle: 项目
 description: 做过的项目——它是什么、我怎么做的、源码在哪里。
 weight: 30
-type: blog
+layout: case
 icon: fa-solid fa-layer-group
 sidebar_root_for: self
 sidebar_root_link_self: true
-blog_index: cards
-blog_index_columns: 3
 footer_style: slim
 cascade:
   type: blog
@@ -17,4 +15,4 @@ cascade:
   footer_style: slim
 ---
 
-每个项目一页:它是什么、我做了什么、源码在哪。每页都是模板,填上真实的故事即可。
+按方向分组:数学建模、AI Agent 技能库、工具与自动化、课程实践。点开每个项目可以看到它是什么、我做了什么、源码在哪里。

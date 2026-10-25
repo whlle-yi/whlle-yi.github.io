@@ -4,6 +4,8 @@ description: "Keeps proxy connectivity stable and alive on campus networks."
 weight: 30
 date: 2026-09-25
 tags: [network, python, tools]
+group: Tools & Automation
+github: https://github.com/whlle-yi/campus-proxy-guard
 ---
 
 [campus-proxy-guard](https://github.com/whlle-yi/campus-proxy-guard) — Keeps proxy connectivity stable and alive on campus networks.

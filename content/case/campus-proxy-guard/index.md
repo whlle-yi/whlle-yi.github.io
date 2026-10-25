@@ -4,6 +4,8 @@ description: "校园网代理卫士:守护校园网环境下的代理连接稳�
 weight: 30
 date: 2026-09-25
 tags: [网络, Python, 工具]
+group: 工具与自动化
+github: https://github.com/whlle-yi/campus-proxy-guard
 ---
 
 [campus-proxy-guard](https://github.com/whlle-yi/campus-proxy-guard) — 校园网代理卫士:守护校园网环境下的代理连接稳定可用。

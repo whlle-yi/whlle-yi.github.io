@@ -4,6 +4,8 @@ description: "A Markdown conversion skill that turns notes into well-typeset Wor
 weight: 60
 date: 2026-09-30
 tags: [docs, pandoc, skills]
+group: AI Agent Skills
+github: https://github.com/whlle-yi/md-convert-skill
 ---
 
 [md-convert-skill](https://github.com/whlle-yi/md-convert-skill) — A Markdown conversion skill that turns notes into well-typeset Word, PDF, and HTML.

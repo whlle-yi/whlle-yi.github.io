@@ -4,6 +4,8 @@ description: "An automation tool for Chaoxing (Xuexitong)."
 weight: 50
 date: 2026-10-04
 tags: [automation, python]
+group: Tools & Automation
+github: https://github.com/whlle-yi/chaoxing-auto
 ---
 
 [chaoxing-auto](https://github.com/whlle-yi/chaoxing-auto) — An automation tool for Chaoxing (Xuexitong).

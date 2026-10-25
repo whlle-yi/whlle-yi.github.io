@@ -4,6 +4,8 @@ description: "软件工程课程实践大作业:同一套软件按五个阶段�
 weight: 70
 date: 2026-10-20
 tags: [软件工程, 课程实践]
+group: 课程实践
+github: https://github.com/whlle-yi/software-engineering-practice
 ---
 
 [software-engineering-practice](https://github.com/whlle-yi/software-engineering-practice) — 软件工程课程实践大作业:同一套软件按五个阶段迭代交付。

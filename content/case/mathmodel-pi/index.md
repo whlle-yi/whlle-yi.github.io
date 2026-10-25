@@ -5,6 +5,8 @@ description: >-
 weight: 10
 date: 2026-10-05
 tags: [桌面应用, AI Agent, 数学建模]
+group: 数学建模
+github: https://github.com/whlle-yi/Mathmodel-PI
 ---
 
 [Mathmodel-PI](https://github.com/whlle-yi/Mathmodel-PI) 是一个把 pi 智能体框架

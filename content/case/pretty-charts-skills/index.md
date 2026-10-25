@@ -4,6 +4,8 @@ description: "面向 AI Agent 的高质量绘图技能库:统一的图表风格�
 weight: 20
 date: 2026-09-26
 tags: [可视化, AI Agent, 技能库]
+group: AI Agent 技能库
+github: https://github.com/whlle-yi/pretty-charts-skills
 ---
 
 [pretty-charts-skills](https://github.com/whlle-yi/pretty-charts-skills) — 面向 AI Agent 的高质量绘图技能库:统一的图表风格体系与方法论,覆盖 Matplotlib、ECharts、TikZ 与 Mermaid。

@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ $groups := dict }}
+{{ $order := slice }}
+{{ range .RegularPages }}
+  {{ $g := .Params.group | default "更多" }}
+  {{ if not (in $order $g) }}{{ $order = $order | append $g }}{{ end }}
+  {{ $groups = merge $groups (dict $g ((index $groups $g | default slice) | append .)) }}
+{{ end }}
+<article class="case-list">
+  <header class="case-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="case-intro">{{ . }}</div>{{ end }}
+  </header>
+  {{ range $order }}
+  {{ $name := . }}
+  <section class="case-group" aria-label="{{ $name }}">
+    <h2 id="{{ anchorize $name }}">{{ $name }}</h2>
+    <ul>
+      {{ range index $groups $name }}
+      <li class="case-item">
+        <a class="case-link" href="{{ .RelPermalink }}">
+          <span class="case-name">{{ .Title }}</span>
+          <span class="case-desc">{{ .Description }}</span>
+        </a>
+        {{ with .Params.github }}<a class="case-github" href="{{ . }}" target="_blank" rel="noopener" aria-label="GitHub">{{ partial "about/asset.html" "github" }}</a>{{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</article>
+{{ end }}

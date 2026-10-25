@@ -143,3 +143,5 @@
 <canvas id="bp-bg" aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;"></canvas>
 {{- $bgscript := resources.Get "blueprint-bg.js" | minify | fingerprint -}}
 <script defer src="{{ $bgscript.RelPermalink }}" integrity="{{ $bgscript.Data.Integrity }}"></script>
+{{- $railscript := resources.Get "scroll-rail.js" | minify | fingerprint -}}
+<script defer src="{{ $railscript.RelPermalink }}" integrity="{{ $railscript.Data.Integrity }}"></script>
