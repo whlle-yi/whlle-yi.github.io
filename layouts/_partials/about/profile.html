@@ -2,7 +2,6 @@
 {{- $records := partial "about/records.html" . -}}
 {{- $data := merge $p (dict "records" $records "experience" .Params.experience "qa" .Params.qa "urls" (dict "projects" ("case/" | relLangURL) "blog" ("blog/" | relLangURL) "about" ("about/" | relLangURL))) -}}
 <div class="ryr-about pixel-shell variant-b bots-static" data-about-stage>
-  </div>
   <div class="hero-stage">
     <section class="hero-panel hero-identity" aria-labelledby="profile-name">
       <div class="brand-lockup">
