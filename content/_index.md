@@ -35,6 +35,20 @@ profile:
   output_label: "终端输出"
   input_label: "终端命令"
   completion_label: "命令补全"
+  pet_label: "和 T4 打个招呼"
+qa:
+  - keys: ["你是谁", "who are you", "名字", "name", "介绍"]
+    answer: "我是 WHLLE_YI,计算机专业在校本科生,喜欢动手做东西。"
+  - keys: ["联系", "contact", "邮箱", "email", "怎么找你", "微信"]
+    answer: "QQ 邮箱:3253036748@qq.com\n网易邮箱:15979903749@163.com\nGmail:whlle888888@gmail.com\nGitHub:@whlle-yi"
+  - keys: ["兴趣", "interest", "方向", "喜欢什么", "会什么"]
+    answer: "数学建模 · AI Agent\n自动化工具 · 网站搭建"
+  - keys: ["专业", "学校", "上学", "major", "学生"]
+    answer: "计算机专业在校本科生,在校学习和做项目。"
+  - keys: ["网站", "本站", "这个站", "site"]
+    answer: "这是我的个人网站:Hugo + OINK 主题搭建,吉祥物是一只噬菌体 T4,背景是一片几何星空。"
+  - keys: ["你好", "hello", "hi", "在吗"]
+    answer: "你好呀!输入 help 看看我会什么,或者随便聊~"
 experience: # 占位:改成你自己的经历时间线
   - period: "NOW"
     title: "在校学习 · 做项目"

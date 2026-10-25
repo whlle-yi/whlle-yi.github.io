@@ -31,6 +31,19 @@
     });
   });
   document.addEventListener('click', event => { if (menuOpen && !contact.contains(event.target)) closeMenu(); });
+  // 漂浮宠物:点击冒气泡打招呼
+  const pet = document.querySelector('[data-site-pet]');
+  const petBtn = pet && pet.querySelector('[data-pet-btn]');
+  const petBubble = pet && pet.querySelector('[data-pet-bubble]');
+  if (petBtn && petBubble) {
+    let gi = 0, petHide;
+    petBtn.addEventListener('click', () => {
+      petBubble.textContent = c.greeting[gi++ % c.greeting.length];
+      petBubble.hidden = false;
+      clearTimeout(petHide);
+      petHide = setTimeout(() => { petBubble.hidden = true; }, 3400);
+    });
+  }
   document.querySelector('.interactive-shell').hidden = false;
 function setupConsole(c) {
   const input = document.getElementById('shell-input');
@@ -47,6 +60,20 @@ function setupConsole(c) {
   const forced = matchMedia('(forced-colors: active)');
   const zh = language === 'zh';
   const commands = ['help', 'hello', 'whoami', 'about', 'experience', 'interests', 'projects', 'blog', 'github', 'contact', 'email', 'copy email', 'clear', 'open notes'];
+  const qa = Array.isArray(c.qa) ? c.qa : [];
+  function answerFree(raw) {
+    const q = String(raw).toLowerCase().trim();
+    let best = null, bestScore = 0;
+    for (const item of qa) {
+      let score = 0;
+      for (const key of (item.keys || [])) {
+        const k = String(key).toLowerCase();
+        if (k.length >= 2 && (q.includes(k) || (k.includes(q) && q.length >= 2))) score += k.length;
+      }
+      if (score > bestScore) { bestScore = score; best = item; }
+    }
+    return best;
+  }
   const history = [];
   const queue = [];
   let cursor = 0, draft = '', composing = false, current = null, completion = null;
@@ -115,7 +142,7 @@ function setupConsole(c) {
       case 'help': {
         parent.lang = 'en';
         const list = document.createElement('dl'); list.className = 'shell-help';
-        for (const [name, detail] of [['hello','Say hello to T4'],['whoami','Profile'],['about','About page'],['experience','Background & awards'],['interests','Interests'],['projects','Projects & notes'],['blog / github','Links'],['contact / email','Contact'],['copy email','Copy email'],['clear','Clear output']]) {
+        for (const [name, detail] of [['hello','Say hello to T4'],['whoami','Profile'],['about','About page'],['experience','Background & awards'],['interests','Interests'],['projects','Projects & notes'],['blog / github','Links'],['contact / email','Contact'],['copy email','Copy email'],['anything','Ask me anything (zh/en)'],['clear','Clear output']]) {
           text(list, name, 'dt'); text(list, detail, 'dd');
         }
         parent.append(list); break;
@@ -132,7 +159,12 @@ function setupConsole(c) {
       case 'github': link(parent, 'GitHub / whlle-yi', 'https://github.com/whlle-yi'); break;
       case 'contact': case 'email': contact(parent); break;
       case 'copy email': text(parent, await job.copyResult); break;
-      default: parent.lang = 'en'; text(parent, 'Command not found. Type help.');
+      default: {
+        const hit = answerFree(job.raw);
+        if (hit) { text(parent, hit.answer); break; }
+        parent.lang = zh ? 'zh-CN' : 'en';
+        text(parent, zh ? "这个问题我还没学会。试试 help,或者换个问法~" : "I don't know that one yet. Try help, or ask differently.");
+      }
     }
   }
   async function typeReply(job, reply) {

@@ -35,6 +35,20 @@ profile:
   output_label: "Terminal output"
   input_label: "Terminal command"
   completion_label: "Completion"
+  pet_label: "Say hi to T4"
+qa:
+  - keys: ["who are you", "your name", "name", "introduce"]
+    answer: "I am WHLLE_YI, a CS undergraduate who loves building things."
+  - keys: ["contact", "email", "reach you"]
+    answer: "QQ: 3253036748@qq.com\nNetEase: 15979903749@163.com\nGmail: whlle888888@gmail.com\nGitHub: @whlle-yi"
+  - keys: ["interest", "into"]
+    answer: "Mathematical modeling · AI agents\nAutomation tools · Web building"
+  - keys: ["major", "school", "student"]
+    answer: "CS undergraduate, studying and building projects."
+  - keys: ["this site", "website"]
+    answer: "My personal site: Hugo + OINK theme, with T4 the phage mascot and a geometric starfield background."
+  - keys: ["hello", "hi", "hey"]
+    answer: "Hello! Type help to see what I know, or just ask me anything."
 experience: # placeholder: your own timeline
   - period: "NOW"
     title: "Studying & building"
