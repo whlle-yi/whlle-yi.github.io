@@ -83,6 +83,20 @@
   addEventListener('resize', () => { resize(); if (reduce.matches) draw(performance.now()); });
   resize();
 
+  // ---- 每 10 秒重生一次:位置/大小/形状/颜色全部重随机 ----
+  let lastSwap = performance.now(), swapState = null;
+  const SWAP_MS = 5000, FADE_MS = 650;
+  function respawn() {
+    for (const s of solids) {
+      s.shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+      s.ci = Math.floor(Math.random() * COLORS.length);
+      s.x = -2.2 + Math.random() * 4.4; s.y = -1.1 + Math.random() * 2.2; s.z = 1.6 + Math.random() * 2.4;
+      s.size = 0.15 + Math.random() * 0.13;
+      s.wx = (Math.random() - 0.5) * 0.18; s.wy = (Math.random() - 0.5) * 0.22;
+      s.sens = 0.6 + Math.random() * 0.8;
+    }
+  }
+
   // ---- mouse: 视差 + 倾斜转动 ----
   let mx = 0, my = 0, tx = 0, ty = 0;
   addEventListener('pointermove', event => {
@@ -90,7 +104,8 @@
     ty = (event.clientY / innerHeight - 0.5) * 2;
   }, { passive: true });
 
-  function draw(now) {
+  function draw(now, ga) {
+    ctx.globalAlpha = ga === undefined ? 1 : ga;
     ctx.clearRect(0, 0, W, H);
     mx += (tx - mx) * 0.045; my += (ty - my) * 0.045;
     const cx = W / 2 + mx * 40, cy = H / 2 + my * 26;
@@ -148,7 +163,20 @@
     if (now - last < 33) return;
     last = now;
     for (const s of solids) { s.rx += s.wx / 30; s.ry += s.wy / 30; }
-    draw(now);
+    let ga = 1;
+    if (swapState) {
+      const e = now - swapState.t0;
+      if (swapState.phase === 0) {
+        ga = Math.max(0, 1 - e / FADE_MS);
+        if (e >= FADE_MS) { respawn(); swapState.phase = 1; swapState.t0 = now; }
+      } else {
+        ga = Math.min(1, e / FADE_MS);
+        if (e >= FADE_MS) { swapState = null; lastSwap = now; }
+      }
+    } else if (now - lastSwap > SWAP_MS) {
+      swapState = { t0: now, phase: 0 };
+    }
+    draw(now, ga);
   }
   function start() { if (!raf) raf = requestAnimationFrame(tick); }
   function stop() { cancelAnimationFrame(raf); raf = 0; }
@@ -160,3 +188,4 @@
     reduce.addEventListener('change', () => reduce.matches ? (stop(), draw(performance.now())) : start());
   }
 })();
+
