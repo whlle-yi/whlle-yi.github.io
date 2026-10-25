@@ -418,3 +418,8 @@
 @keyframes bot-arm-r { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(7deg); } }
 .bot-shadow { animation: bot-shadow 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes bot-shadow { 0%, 100% { opacity: 0.16; transform: scaleX(1); } 50% { opacity: 0.08; transform: scaleX(0.78); } }
+
+/* ---- T4 phage mascot: swaying tail fibers ---- */
+.bot-fiber { animation: bot-fiber 2.8s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 0%; }
+.bot-fiber-b { animation-delay: -1.4s; }
+@keyframes bot-fiber { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-6deg); } }

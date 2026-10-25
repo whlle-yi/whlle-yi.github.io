@@ -10,13 +10,13 @@ profile:
   name: WHLLE_YI
   avatar: images/avatar.jpg
   avatar_alt: WHLLE_YI 的头像
-  robot_section: Bit 几何机器人
-  robot_label: 和 Bit 打个招呼
-  robot_hint: 点击 Bit,打个招呼。
+  robot_section: T4 几何噬菌体
+  robot_label: 和 T4 打个招呼
+  robot_hint: 点击 T4,打个招呼。
   robot_idle: 在这里,陪你探索。
-  greetings: # 占位:点击机器人时它说的话
-    - "Bit:叮咚!几何机器人 Bit 已上线。欢迎来到 WHLLE_YI 的小站!"
-    - "Bit:很高兴见到你!我胸口的灯,是陪你写代码的证明。"
+  greetings: # 占位:点击噬菌体时它说的话
+    - "T4:叮咚!几何噬菌体 T4 已上线。欢迎来到 WHLLE_YI 的小站!"
+    - "T4:很高兴见到你!我头上的二十面体,和背景的几何体是一家人。"
   stats_label: 站点内容统计
   blog_label: 博客
   projects_label: 项目
@@ -43,7 +43,7 @@ experience:
 
 这个网站记录我的学习笔记、项目实践与技术探索。
 
-<p><a id="projects" href="{{< relref "/case/" >}}">查看项目</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">和 Bit 打个招呼</a></p>
+<p><a id="projects" href="{{< relref "/case/" >}}">查看项目</a> · <a id="shell-title" href="{{< relref "/" >}}#shell-title">和 T4 打个招呼</a></p>
 
 ## 兴趣方向 {#interests}
 

@@ -28,7 +28,7 @@ profile:
   headline: ["把做过的事,", "讲清楚。"]
   bio: "这里记录我的文章、项目与学习笔记。"
   focus: ["数学建模与 AI Agent", "自动化小工具", "网站搭建"] # 占位:终端 interests 命令的输出
-  greeting: ["叮咚!我是 Bit,一台由几何图形组成的机器人。", "欢迎来到这里!输入 projects 看看项目,或者输入 contact 跟我打个招呼。"]
+  greeting: ["叮咚!我是 T4,一台噬菌体形状的几何机器人——头是一颗二十面体,和背景里那些几何体是同款。", "欢迎来到这里!输入 projects 看看项目,或者输入 contact 跟我打个招呼。"]
   pause: "暂停机器人动作"
   resume: "继续机器人动作"
   quick_commands: "快捷命令"
