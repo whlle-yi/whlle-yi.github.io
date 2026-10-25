@@ -31,19 +31,6 @@
     });
   });
   document.addEventListener('click', event => { if (menuOpen && !contact.contains(event.target)) closeMenu(); });
-  // 漂浮宠物:点击冒气泡打招呼
-  const pet = document.querySelector('[data-site-pet]');
-  const petBtn = pet && pet.querySelector('[data-pet-btn]');
-  const petBubble = pet && pet.querySelector('[data-pet-bubble]');
-  if (petBtn && petBubble) {
-    let gi = 0, petHide;
-    petBtn.addEventListener('click', () => {
-      petBubble.textContent = c.greeting[gi++ % c.greeting.length];
-      petBubble.hidden = false;
-      clearTimeout(petHide);
-      petHide = setTimeout(() => { petBubble.hidden = true; }, 3400);
-    });
-  }
   document.querySelector('.interactive-shell').hidden = false;
 function setupConsole(c) {
   const input = document.getElementById('shell-input');

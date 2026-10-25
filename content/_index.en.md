@@ -35,7 +35,6 @@ profile:
   output_label: "Terminal output"
   input_label: "Terminal command"
   completion_label: "Completion"
-  pet_label: "Say hi to T4"
 qa:
   - keys: ["who are you", "your name", "name", "introduce"]
     answer: "I am WHLLE_YI, a CS undergraduate who loves building things."

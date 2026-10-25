@@ -35,7 +35,6 @@ profile:
   output_label: "终端输出"
   input_label: "终端命令"
   completion_label: "命令补全"
-  pet_label: "和 T4 打个招呼"
 qa:
   - keys: ["你是谁", "who are you", "名字", "name", "介绍"]
     answer: "我是 WHLLE_YI,计算机专业在校本科生,喜欢动手做东西。"
